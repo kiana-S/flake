@@ -1,2 +1,4 @@
 { ... }:
-{}
+{
+  imports = [ ../../common/home-manager ];
+}

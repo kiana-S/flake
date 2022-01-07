@@ -19,7 +19,7 @@ outputs = { self,
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
-      "desktop" = lib.makeOverridable lib.nixosSystem {
+      "kiana-desktop" = lib.makeOverridable lib.nixosSystem {
         inherit system;
         modules = [
           { _module.args = moduleArgs; }
@@ -35,10 +35,10 @@ outputs = { self,
         ]; 
       };
 
-      "laptop" = lib.makeOverridable lib.nixosSystem {
+      "kiana-laptop" = lib.makeOverridable lib.nixosSystem {
         inherit system;
         modules = [
-          { _module.args = moduleArgs }
+          { _module.args = moduleArgs; }
           ./common/config
           ./laptop/config
           home-manager.nixosModules.home-manager

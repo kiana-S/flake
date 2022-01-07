@@ -18,7 +18,6 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "kiana-pc"; # Define your hostname.
   networking.wireless.enable = true;
   networking.wireless.networks = {
     "NETGEAR97".psk = "pastelcello694";

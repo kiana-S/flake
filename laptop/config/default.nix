@@ -1,2 +1,4 @@
 { ... }:
-{}
+{
+  networking.hostName = "kiana-laptop";
+}
