@@ -1,0 +1,68 @@
+
+window {
+  margin: 0px;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 1.2em;
+  font-family: "Ubuntu Mono";
+}
+
+#input {
+  color: white;
+  margin: 0px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border: 0px;
+  border-bottom: 2px solid #eef279;
+  border-radius: 0px;
+  background-color: transparent;
+}
+
+#inner-box {
+  margin: 0px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-top: 2px solid transparent;
+  color: white;
+  background-color: transparent;
+}
+
+expander .entry {
+  margin-left: -15px;
+}
+
+#img {
+  margin-right: 6px;
+}
+
+#outer-box {
+  margin: 0px;
+  border: 0px solid;
+  background-color: transparent;
+}
+
+#scroll {
+  margin: 0px;
+  border: 0px solid;
+  background-color: transparent;
+}
+
+#entry{
+  padding: 1px;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin: 0px;
+}
+
+#entry:selected{
+  background-color: #eef279;
+  color: #141414;
+  outline: 0px;
+  border-radius: 0px;
+}
+
+#text:selected{
+  background-color: #eef279;
+  color: #141414;
+  outline: 0px;
+  border-radius: 0px;
+}
