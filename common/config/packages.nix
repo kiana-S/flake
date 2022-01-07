@@ -11,6 +11,7 @@
     tldr
     pandoc
     pamixer
+    playerctl
     screenfetch
 
     gcc
