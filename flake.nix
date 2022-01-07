@@ -19,19 +19,36 @@ outputs = { self,
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
-      "kiana-pc" = lib.makeOverridable lib.nixosSystem {
+      "desktop" = lib.makeOverridable lib.nixosSystem {
         inherit system;
         modules = [
           { _module.args = moduleArgs; }
-          ./config
+          ./common/config
+          ./desktop/config
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.kiana = import ./home-manager;
+            home-manager.users.${username} = import ./desktop/home-manager;
             home-manager.extraSpecialArgs = moduleArgs;
           }
         ]; 
+      };
+
+      "laptop" = lib.makeOverridable lib.nixosSystem {
+        inherit system;
+        modules = [
+          { _module.args = moduleArgs }
+          ./common/config
+          ./laptop/config
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${username} = import ./laptop/home-manager;
+            home-manager.extraSpecialArgs = moduleArgs;
+          }
+        ];
       };
     };
   };
