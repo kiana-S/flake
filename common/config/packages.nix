@@ -5,28 +5,39 @@ let
       # Global dev tools (ghc, hlint, cargo) will not be
       # installed by default; they must be managed
       # per-package using nix-shell
-      
-      # Git extensions
-      pinage404.git-extension-pack
-      
+            
       # Haskell extensions
       haskell.haskell
-      justusadam.language-haskell
-      hoovercj.haskell-linter
-      
-      # Nix extensions
-      pinage404.nix-extension-pack
-      
+     
       # Rust extensions
       matklad.rust-analyzer
-      wcrichton.flowistry
       tamasfe.even-better-toml
-      swellaby.vscode-rust-test-adapter
       
       # Other
-      hbenl.vscode-test-explorer
       ms-python.python
       ms-toolsai.jupyter
+    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      # Extensions that aren't built-in to nixpkgs
+      # I REALLY want to make this flake-based, but there's no
+      # documentation on how to do that anywhere.
+      {
+        name = "git-extension-pack";
+        publisher = "pinage404";
+        version = "1.0.0";
+        sha256 = "1bradnx0ll8zninqn8lnjj6dp8dgxxgpc6yzaap8xghb1jv1hn39";
+      }
+      {
+        name = "nix-extension-pack";
+        publisher = "pinage404";
+        version = "1.0.0";
+        sha256 = "10hi9ydx50zd9jhscfjiwlz3k0v4dfi0j8p58x8421rk5dspi98x";
+      }
+      {
+        name = "haskell-linter";
+        publisher = "hoovercj";
+        version = "0.0.6";
+        sha256 = "0fb71cbjx1pyrjhi5ak29wj23b874b5hqjbh68njs61vkr3jlf1j";
+      }
     ];
   vscodium-with-extensions = pkgs.vscode-with-extensions.override {
     vscode = pkgs.vscodium;
