@@ -12,5 +12,7 @@
     enable = true;
     userName = "kiana-S";
     userEmail = "kiana.a.sheibani@gmail.com";
+
+    extraConfig.credential.helper = "store";
   };
 }
