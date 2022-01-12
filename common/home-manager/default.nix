@@ -14,5 +14,6 @@
     userEmail = "kiana.a.sheibani@gmail.com";
 
     extraConfig.credential.helper = "store";
+    extraConfig.git.allowForcePush = true;
   };
 }
