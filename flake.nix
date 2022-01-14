@@ -5,12 +5,15 @@ inputs = rec {
 
   nur.url = "github:nix-community/NUR";
 
+  nixos-hardware.url = "github:NixOS/nixos-hardware";
+
   home-manager.url = "github:nix-community/home-manager/master";
   home-manager.inputs.nixpkgs.follows = "nixpkgs";
 };
 outputs = { self,
             nixpkgs,
             home-manager,
+            nixos-hardware,
 ...}@inputs:
   let
     system = "x86_64-linux";
@@ -42,6 +45,7 @@ outputs = { self,
           ./common/config
           ./laptop/config
           home-manager.nixosModules.home-manager
+          nixos-hardware.nixosModules.microsoft-surface
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
