@@ -1,8 +1,7 @@
 { config, pkgs, nur,
 nixpkgs, # The flake's input version of nixpkgs
 ... }:
-let hashedPassword = "$6$lokU/kizIJ/HwEI8$N6c80K0.VHkFBaOMcS8Bc1Fz5bx8qqTRH8brf0.duTOkf4Mja90bLwki8IVCBVpHnj7WqEkF4.CtZA6WczeqQ1";
-in {
+{
   nix.package = pkgs.nixFlakes;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
@@ -41,10 +40,6 @@ in {
     description = "Kiana Sheibani";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
-    inherit hashedPassword;
-  };
-  users.users.root = {
-    inherit hashedPassword;
   };
 
 
