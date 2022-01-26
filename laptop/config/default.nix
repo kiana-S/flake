@@ -9,6 +9,7 @@ in {
 
   boot.loader.grub.useOSProber = true;
   hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
 
   # Passwords
   users.users.kiana = { inherit hashedPassword; };
