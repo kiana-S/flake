@@ -17,7 +17,6 @@ nixpkgs, # The flake's input version of nixpkgs
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.wireless.enable = true;
   networking.wireless.networks = {
     "NETGEAR97".psk = "pastelcello694";
   };

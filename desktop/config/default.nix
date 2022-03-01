@@ -6,6 +6,7 @@ in {
   ];
 
   networking.hostName = "kiana-desktop";
+  networking.wireless.enable = true;
 
   # Passwords
   users.users.kiana = { inherit hashedPassword; };
