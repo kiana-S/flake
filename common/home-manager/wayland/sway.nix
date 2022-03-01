@@ -60,8 +60,10 @@ in {
       
       startup = map (x: { command = x; }) [
         ''~/.azotebg''
-        # Make wob channel
-        ''mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob''
+        # Make wob channels
+        ''mkfifo $SWAYSOCK.volume.wob && tail -f $SWAYSOCK.volume.wob | wob''
+        ''mkfifo $SWAYSOCK.brightness.wob && tail -f $SWAYSOCK.brightness.wob | wob \
+                   --border-color "#FFFF00FF" --bar-color "#FFFF00FF"''
         ''swayidle timeout 120 'swaylock -f --grace=180' \
                    timeout 600 'systemctl suspend' \
                    before-sleep 'swaylock -f' ''
@@ -70,10 +72,13 @@ in {
       ];
 
       keybindings = let
-        # Display volume using wob
-        audio-disp = ''pamixer --get-volume > $SWAYSOCK.wob'';
+        # Volume using pamixer and wob
+        audio-disp = ''pamixer --get-volume > $SWAYSOCK.volume.wob'';
         audio      = cmd: "exec pamixer ${cmd} && ${audio-disp}";
-        brightness-set = x: "exec brightnessctl set ${x}";
+        # Brightness using brightnessctl and wob
+        brightness-disp = ''brightnessctl get > $SWAYSOCK.brightness.wob'';
+        brightness      = x: "exec brightnessctl set ${x} && ${brightness-disp}";
+        # Play controls using playerctl
         playerctl = cmd: "exec playerctl ${cmd}";
         in pkgs.lib.mkOptionDefault {
           "${modifier}+Shift+d" = ''exec wofi --show run'';
@@ -85,15 +90,20 @@ in {
           "${modifier}+Print" = ''grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" -o $(date +%Y-%m-%d_%H-%m-%s)'';
 
           # Special XF86 key bindings
-          "XF86AudioRaiseVolume"  = audio "-ui 2";
-          "XF86AudioLowerVolume"  = audio "-ud 2";
-          "XF86AudioMute"         = ''exec pamixer --toggle-mute'';
-          "XF86AudioMicMute"      = ''exec pactl set-source-mute @DEFAULT_SOURCE@ toggle'';
-          "XF86MonBrightnessDown" = brightness-set "5%-";
-          "XF86MonBrightnessUp"   = brightness-set "+5%";
-          "XF86AudioPlay"         = playerctl "play-pause";
-          "XF86AudioNext"         = playerctl "next";
-          "XF86AudioPrev"         = playerctl "previous";
+          "XF86AudioRaiseVolume"       = audio "-ui 2";
+          "XF86AudioLowerVolume"       = audio "-ud 2";
+          "Shift+XF86AudioRaiseVolume" = audio "-ui 2 --allow-boost";
+          "Shift+XF86AudioLowerVolume" = audio "-ud 2 --allow-boost";
+          "XF86AudioMute"              = ''exec pamixer --toggle-mute'';
+          "XF86AudioMicMute"           = ''exec pactl set-source-mute @DEFAULT_SOURCE@ toggle'';
+          "XF86MonBrightnessDown"      = brightness "5-";
+          "XF86MonBrightnessUp"        = brightness "+5";
+          "XF86AudioPlay"              = playerctl "play-pause";
+          "XF86AudioNext"              = playerctl "next";
+          "XF86AudioPrev"              = playerctl "previous";
+
+          # Exit
+          "${modifier}+Shift+e" = ''exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit' '';
       };
 
        output."*" = {
@@ -102,4 +112,3 @@ in {
     };
   };
 }
-# bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'

@@ -14,6 +14,7 @@ in {
     tldr
     pandoc
     pamixer
+    brightnessctl
     playerctl
     screenfetch
 

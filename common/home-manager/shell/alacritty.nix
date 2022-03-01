@@ -3,7 +3,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      background_opacity = 0.9;
+      window.opacity = 0.9;
       
       # Based on the GNOME Dark theme
       colors.primary = {
