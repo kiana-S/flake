@@ -3,6 +3,7 @@ let hashedPassword = "$6$y3eb1phxFWnParRT$w1LNfxJ2ByHoiBa5ywh4STGuIK/r4Tnyxx2Xe/
 in {
   imports = [
     ./hardware-configuration.nix
+    ./battery.nix
   ];
 
   networking.hostName = "kiana-laptop";
