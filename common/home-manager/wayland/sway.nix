@@ -76,7 +76,7 @@ in {
         audio-disp = ''pamixer --get-volume > $SWAYSOCK.volume.wob'';
         audio      = cmd: "exec pamixer ${cmd} && ${audio-disp}";
         # Brightness using brightnessctl and wob
-        brightness-disp = ''brightnessctl get > $SWAYSOCK.brightness.wob'';
+        brightness-disp = ''brightnessctl -m | cut -d "," -f4 | tr -d "%" > $SWAYSOCK.brightness.wob'';
         brightness      = x: "exec brightnessctl set ${x} && ${brightness-disp}";
         # Play controls using playerctl
         playerctl = cmd: "exec playerctl ${cmd}";
@@ -96,8 +96,8 @@ in {
           "Shift+XF86AudioLowerVolume" = audio "-ud 2 --allow-boost";
           "XF86AudioMute"              = ''exec pamixer --toggle-mute'';
           "XF86AudioMicMute"           = ''exec pactl set-source-mute @DEFAULT_SOURCE@ toggle'';
-          "XF86MonBrightnessDown"      = brightness "5-";
-          "XF86MonBrightnessUp"        = brightness "+5";
+          "XF86MonBrightnessDown"      = brightness "4%-";
+          "XF86MonBrightnessUp"        = brightness "+4%";
           "XF86AudioPlay"              = playerctl "play-pause";
           "XF86AudioNext"              = playerctl "next";
           "XF86AudioPrev"              = playerctl "previous";
