@@ -26,8 +26,8 @@ outputs = { self,
         inherit system;
         modules = [
           { _module.args = moduleArgs; }
-          ./common/config
           ./desktop/config
+          ./common/config
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -42,8 +42,8 @@ outputs = { self,
         inherit system;
         modules = [
           { _module.args = moduleArgs; }
-          ./common/config
           ./laptop/config
+          ./common/config
           home-manager.nixosModules.home-manager
           nixos-hardware.nixosModules.microsoft-surface
           {

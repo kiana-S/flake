@@ -1,4 +1,7 @@
 { ... }:
 {
-  imports = [ ../../common/home-manager ];
+  imports = [
+    ../../common/home-manager
+    ./waybar.nix
+  ];
 }
