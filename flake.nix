@@ -5,7 +5,7 @@ inputs = rec {
 
   nur.url = "github:nix-community/NUR";
 
-  nixos-hardware.url = "github:kiana-S/nixos-hardware";
+  nixos-hardware.url = "github:NixOS/nixos-hardware";
 
   home-manager.url = "github:nix-community/home-manager/master";
   home-manager.inputs.nixpkgs.follows = "nixpkgs";
