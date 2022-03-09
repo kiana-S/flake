@@ -19,5 +19,7 @@
       read_only = " 🔒";
       read_only_style = "cyan";
     };
+
+    battery.disabled = true;
   };
 }

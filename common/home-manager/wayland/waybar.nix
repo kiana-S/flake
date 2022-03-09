@@ -232,7 +232,7 @@ modules-right:
         }
 
         @keyframes blink {
-            to {
+            80% {
                 color: rgba(0, 0, 0, 0);
             }
         }
@@ -240,7 +240,7 @@ modules-right:
         #battery.critical:not(.charging) {
             box-shadow: inset 0 -3px #400000;
             color: #ff2525;
-            animation: blink 1.5s steps(4, start) infinite;
+            animation: blink 1.5s step-start infinite;
         }
 
         #backlight {
