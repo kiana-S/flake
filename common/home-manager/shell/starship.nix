@@ -23,8 +23,7 @@
     };
 
     nix_shell = {
-      symbol = "❄️";
-      format = "via [$symbol$name( \($state\))]($style) ";
+      symbol = "❄️ ";
     };
 
     git_status = {
