@@ -4,7 +4,9 @@
 
   programs.starship.settings = {
     add_newline = true;
-    
+
+    battery.disabled = true;
+
     character =
       let char = "⮞"; charVi = "⮜";
       in {
@@ -20,6 +22,23 @@
       read_only_style = "cyan";
     };
 
-    battery.disabled = true;
+    nix_shell = {
+      format = "via [$symbol$name \($state\)]($style) ";
+    };
+
+    git_status = {
+      format = "$stashed$ahead_behind$conflicted$deleted$renamed$staged$modified$untracked";
+
+      conflicted = "[~$count ](red)";
+      ahead = "[⇡$count ](cyan)";
+      behind = "[⇣$count ](cyan)";
+      diverged = "[⇕ ](cyan)";
+      untracked = "[?$count ](cyan)";
+      stashed = "[\$$count ](cyan)";
+      modified = "[!$count ](bright-yellow)";
+      staged = "[+$count ](bright-yellow)";
+      renamed = "[»$count ](bright-yellow)";
+      deleted = "[✘$count ](red)";
+    };
   };
 }

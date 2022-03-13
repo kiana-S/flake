@@ -13,7 +13,10 @@
     userName = "kiana-S";
     userEmail = "kiana.a.sheibani@gmail.com";
 
-    extraConfig.credential.helper = "store";
-    extraConfig.git.allowForcePush = true;
+    extraConfig = {
+      credential.helper = "store";
+      git.allowForcePush = true;
+      init.defaultBranch = "main";
+    };
   };
 }
