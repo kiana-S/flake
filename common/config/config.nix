@@ -9,9 +9,6 @@ nixpkgs, # The flake's input version of nixpkgs
   '';
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ nur.overlay ];
-  
-  # Pin nixpkgs to the flake input
-  nix.registry.nixpkgs.flake = nixpkgs;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
