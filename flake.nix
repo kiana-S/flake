@@ -9,6 +9,9 @@ inputs = rec {
 
   home-manager.url = "github:nix-community/home-manager/master";
   home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+  spacemacs.url = "github:syl20bnr/spacemacs/develop";
+  spacemacs.flake = false;
 };
 outputs = { self,
             nixpkgs,

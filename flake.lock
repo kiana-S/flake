@@ -71,7 +71,25 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "nur": "nur"
+        "nur": "nur",
+        "spacemacs": "spacemacs"
+      }
+    },
+    "spacemacs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1649271578,
+        "narHash": "sha256-xKSjb88YL5fByieMnaLscLRVfyV22fdzxRyHSNj3J9g=",
+        "owner": "syl20bnr",
+        "repo": "spacemacs",
+        "rev": "5c0650282fe09f852ecd4109bf2a6bc9cb5a950b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "syl20bnr",
+        "ref": "develop",
+        "repo": "spacemacs",
+        "type": "github"
       }
     }
   },

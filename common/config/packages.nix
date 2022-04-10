@@ -25,6 +25,7 @@ in {
     slurp
     imv
 
+    emacs
     direnv
     nix-direnv-with-flakes
   ];
