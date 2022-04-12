@@ -5,3 +5,4 @@ image_size=20px
 drun-display_generic=true
 dynamic_lines=true
 term=alacritty
+sort_order=alphabetical
