@@ -80,14 +80,16 @@ in {
         brightness      = x: "exec brightnessctl set ${x} && ${brightness-disp}";
         # Play controls using playerctl
         playerctl = cmd: "exec playerctl ${cmd}";
+        # Grim screenshot file name
+        filename = ''~/Pictures/$(date +%Y-%m-%d_%H-%m-%s).png'';
         in pkgs.lib.mkOptionDefault {
           "${modifier}+Shift+d" = ''exec wofi --show run'';
           "${modifier}+Shift+l" = ''exec swaylock --grace=30'';
 
           # Screenshot
-          "Print"             = ''exec grim -o $(date +%Y-%m-%d_%H-%m-%s)'';
-          "Shift+Print"       = ''exec grim -g "$(slurp)" -o $(date +%Y-%m-%d_%H-%m-%s)'';
-          "${modifier}+Print" = ''grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" -o $(date +%Y-%m-%d_%H-%m-%s)'';
+          "Print"             = ''exec grim ${filename}'';
+          "Shift+Print"       = ''exec grim -g "$(slurp)" ${filename}'';
+          "${modifier}+Print" = ''exec grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" ${filename}'';
 
           # Special XF86 key bindings
           "XF86AudioRaiseVolume"       = audio "-ui 2";
