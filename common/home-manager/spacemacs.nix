@@ -9,6 +9,8 @@
 
   # Spacemacs config
 
-  home.file.".spacemacs.d".source = spacemacs-config;
+  home.file.".spacemacs.d" = {
+    recursive = true;
+    source = spacemacs-config;
+  };
 }
-
