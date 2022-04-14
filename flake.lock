@@ -72,7 +72,8 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
-        "spacemacs": "spacemacs"
+        "spacemacs": "spacemacs",
+        "spacemacs-config": "spacemacs-config"
       }
     },
     "spacemacs": {
@@ -89,6 +90,22 @@
         "owner": "syl20bnr",
         "ref": "develop",
         "repo": "spacemacs",
+        "type": "github"
+      }
+    },
+    "spacemacs-config": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1649949666,
+        "narHash": "sha256-+k/sDxrYfCrdqz4xrLktEfxVySv3s5NH/UM8eRXxsp0=",
+        "owner": "kiana-S",
+        "repo": "spacemacs-config",
+        "rev": "24caf5a28432885fd3872b1e8ae6a6e73408da3a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kiana-S",
+        "repo": "spacemacs-config",
         "type": "github"
       }
     }
