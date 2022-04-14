@@ -1,5 +1,6 @@
 {
 description = "System conf";
+
 inputs = rec {
   nixpkgs.url = "nixpkgs/nixos-unstable";
 
@@ -12,7 +13,10 @@ inputs = rec {
 
   spacemacs.url = "github:syl20bnr/spacemacs/develop";
   spacemacs.flake = false;
+  spacemacs-config.url = "github:kiana-S/spacemacs-config";
+  spacemacs-config.flake = false;
 };
+
 outputs = { self,
             nixpkgs,
             home-manager,
