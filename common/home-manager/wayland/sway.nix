@@ -2,7 +2,6 @@
 let
 modifier = "Mod1";
 terminal = "alacritty";
-bgimg = "What_Space_Really_Looks_Like_2880x1800.png";
 in {
   
   home.sessionVariables = {
@@ -109,7 +108,7 @@ in {
       };
 
        output."*" = {
-         bg = "${./background/${bgimg}} fill";
+         bg = "${../../../assets/background.png} fill";
        };
     };
   };
