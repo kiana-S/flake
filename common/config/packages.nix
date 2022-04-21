@@ -25,7 +25,7 @@ in {
     slurp
     imv
 
-    emacs
+    emacs28
     direnv
     nix-direnv-with-flakes
   ];
