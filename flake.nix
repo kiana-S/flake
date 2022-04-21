@@ -1,10 +1,8 @@
 {
 description = "System conf";
 inputs = rec {
-  nixpkgs.url = "nixpkgs/nixos-unstable";
-
+  nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   nur.url = "github:nix-community/NUR";
-
   nixos-hardware.url = "github:NixOS/nixos-hardware";
 
   home-manager.url = "github:nix-community/home-manager/master";
