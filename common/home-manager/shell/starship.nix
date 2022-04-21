@@ -8,7 +8,7 @@ in {
 
   programs.starship.settings = {
 
-    format = "$directory$nix_shell$all$fill$cmd_duration$status$jobs$time $line_break$character";
+    format = "$directory$nix_shell$all$fill$cmd_duration$status$jobs$time$line_break$character";
     fill.symbol = " ";
 
     add_newline = true;
@@ -48,7 +48,7 @@ in {
 
     time = {
       disabled = false;
-      format = "[$time]($style)";
+      format = "[$time]($style) ";
       style = "dimmed cyan";
     };
 

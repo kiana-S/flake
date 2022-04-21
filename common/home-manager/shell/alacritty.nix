@@ -33,12 +33,12 @@
       };
 
       font =
-        let family = "FiraCode Nerd Font Mono";
+        let family = "VictorMono";
             font-style = style: { inherit family style; };
         in {
-          normal      = font-style "Regular";
+          normal      = font-style "SemiBold";
           bold        = font-style "Bold";
-          italic      = font-style "Italic";
+          italic      = font-style "SemiBold Italic";
           bold_italic = font-style "Bold Italic";
  
           size = 11;
