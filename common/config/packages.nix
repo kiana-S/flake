@@ -7,7 +7,6 @@ in {
     ffmpeg
     jq 
     git
-    gnupg
     wget
     libnotify
     ripgrep
