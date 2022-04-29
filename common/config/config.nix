@@ -61,6 +61,7 @@ nixpkgs, # The flake's input version of nixpkgs
 
   # Security
   services.openssh.enable = true;
+  services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
