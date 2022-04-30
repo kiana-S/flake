@@ -10,7 +10,7 @@
 
   programs.git = {
     enable = true;
-    userName = "kiana-S";
+    userName = "Kiana Sheibani";
     userEmail = "kiana.a.sheibani@gmail.com";
 
     extraConfig = {
@@ -21,5 +21,12 @@
       user.signingkey = "6CB106C25E86A9F7";
       commit.gpgsign = true;
     };
+  };
+
+  programs.gpg.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    pinentryFlavor = "curses";
   };
 }

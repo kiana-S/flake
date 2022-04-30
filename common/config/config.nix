@@ -59,14 +59,7 @@ nixpkgs, # The flake's input version of nixpkgs
 
   environment.sessionVariables.GTK_THEME = "Adwaita:dark";
 
-  # Security
   services.openssh.enable = true;
-  services.pcscd.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryFlavor = "curses";
-  };
 
 
   # This value determines the NixOS release from which the default
