@@ -26,18 +26,18 @@ in {
     directory = {
       truncation_length = 6;
       truncation_symbol = "⋯ /";
-      read_only = " ";
+      read_only = "  ";
       read_only_style = "cyan";
     };
 
     nix_shell = {
       format = "[$symbol]($style)";
-      symbol = "❄️ ";
+      symbol = "❄️  ";
     };
 
     jobs = {
       format = "[$symbol$number]($style) ";
-      symbol = "";
+      symbol = " ";
       style = "${bright-green}";
     };
 
