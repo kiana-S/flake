@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-modifier = "Mod1";
+modifier = "Mod4";
 terminal = "alacritty";
 in {
   
