@@ -3,7 +3,7 @@
   home.username = username;
   home.homeDirectory = "/home/" + username;
 
-  imports = [ ./shell ./wayland ./spacemacs.nix ];
+  imports = [ ./shell ./wayland ];
 
   xdg.enable = true;
   xdg.userDirs.enable = true;

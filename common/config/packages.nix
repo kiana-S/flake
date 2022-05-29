@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, emacs-overlay, ... }:
 let
   # nix-direnv with flake support
   nix-direnv-with-flakes = pkgs.nix-direnv.override { enableFlakes = true; };
@@ -25,7 +25,6 @@ in {
     slurp
     imv
 
-    emacs28
     direnv
     nix-direnv-with-flakes
   ];
@@ -36,6 +35,10 @@ in {
   # Necessary for VSCodium to store passwords
   services.gnome.gnome-keyring.enable = true;
 
+
+  nixpkgs.overlays = [ emacs-overlay.overlay ];
+  services.emacs.enable = true;
+  services.emacs.package = pkgs.emacsUnstable;
 
   # direnv setup
 
