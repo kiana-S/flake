@@ -38,7 +38,7 @@ in {
 
   nixpkgs.overlays = [ emacs-overlay.overlay ];
   services.emacs.enable = true;
-  services.emacs.package = pkgs.emacsUnstable;
+  services.emacs.package = pkgs.emacsPgtkNativeComp;
 
   # direnv setup
 
