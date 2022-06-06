@@ -75,8 +75,8 @@ in {
         audio-disp = ''pamixer --get-volume > $SWAYSOCK.volume.wob'';
         audio      = cmd: "exec pamixer ${cmd} && ${audio-disp}";
         # Brightness using brightnessctl and wob
-        brightness-disp = ''brightnessctl -m | cut -d "," -f4 | tr -d "%" > $SWAYSOCK.brightness.wob'';
-        brightness      = x: "exec brightnessctl set ${x} && ${brightness-disp}";
+        brightness-disp = ''brightnessctl -e -m | cut -d "," -f4 | tr -d "%" > $SWAYSOCK.brightness.wob'';
+        brightness      = x: "exec brightnessctl -e set ${x} && ${brightness-disp}";
         # Play controls using playerctl
         playerctl = cmd: "exec playerctl ${cmd}";
         # Grim screenshot file name
