@@ -80,10 +80,10 @@ in {
         # Play controls using playerctl
         playerctl = cmd: "exec playerctl ${cmd}";
         # Grim screenshot file name
-        filename = ''~/Pictures/$(date +%Y-%m-%d_%H-%m-%s).png'';
+        filename = ''~/Pictures/$(date +%Y-%m-%d_%H-%m-%S).png'';
         in pkgs.lib.mkOptionDefault {
           "${modifier}+Shift+d" = ''exec wofi --show run'';
-          "${modifier}+Shift+l" = ''exec swaylock --grace=30'';
+          "${modifier}+Shift+m" = ''exec swaylock'';
 
           # Screenshot
           "Print"             = ''exec grim ${filename}'';
@@ -98,13 +98,15 @@ in {
           "XF86AudioMute"              = ''exec pamixer --toggle-mute'';
           "XF86AudioMicMute"           = ''exec pactl set-source-mute @DEFAULT_SOURCE@ toggle'';
           "XF86MonBrightnessDown"      = brightness "4%-";
-          "XF86MonBrightnessUp"        = brightness "+4%";
+          "XF86MonBrightnessUp"        = brightness "4%+";
           "XF86AudioPlay"              = playerctl "play-pause";
           "XF86AudioNext"              = playerctl "next";
           "XF86AudioPrev"              = playerctl "previous";
 
           # Exit
-          "${modifier}+Shift+e" = ''exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit' '';
+          "${modifier}+Shift+e" = ''exec swaynag -t warning -m \
+            "You pressed the exit shortcut. Do you really want to exit sway? \
+            This will end your Wayland session." -b "Yes, exit sway" "swaymsg exit" '';
       };
 
        output."*" = {
