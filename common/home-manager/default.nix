@@ -28,5 +28,9 @@
     enable = true;
     enableSshSupport = true;
     pinentryFlavor = "curses";
+    extraConfig = ''
+      allow-emacs-pinentry
+      allow-loopback-pinentry
+    '';
   };
 }
