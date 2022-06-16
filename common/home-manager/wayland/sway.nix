@@ -80,7 +80,7 @@ in {
         # Play controls using playerctl
         playerctl = cmd: "exec playerctl ${cmd}";
         # Grim screenshot file name
-        filename = ''~/Pictures/$(date +%Y-%m-%d_%H-%m-%S).png'';
+        filename = ''~/Pictures/$(date +%Y-%m-%d_%H-%M-%S).png'';
         in pkgs.lib.mkOptionDefault {
           "${modifier}+Shift+d" = ''exec wofi --show run'';
           "${modifier}+Shift+m" = ''exec swaylock'';
