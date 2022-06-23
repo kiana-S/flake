@@ -15,9 +15,4 @@ in {
   # Passwords
   users.users.kiana = { inherit hashedPassword; };
   users.users.root = { inherit hashedPassword; };
-
-  # Networking
-  networking.wireless.enable = false;
-  networking.networkmanager.enable = true;
-  users.users.kiana.extraGroups = [ "networkmanager" ];
 }

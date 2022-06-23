@@ -14,6 +14,9 @@ nixpkgs, # The flake's input version of nixpkgs
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  networking.wireless.enable = false;
+  networking.networkmanager.enable = true;
+
   # Set your time zone.
   time.timeZone = "America/New_York";
 
@@ -30,7 +33,7 @@ nixpkgs, # The flake's input version of nixpkgs
   users.users.kiana = {
     isNormalUser = true;
     description = "Kiana Sheibani";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };
 
