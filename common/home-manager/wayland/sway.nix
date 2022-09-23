@@ -1,14 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
 modifier = "Mod4";
 terminal = "alacritty";
 in {
-  
-  home.sessionVariables = {
-    MOZ_ENABLE_WAYLAND = "1";
-    MOZ_USE_XINPUT2 = "1";
-  };
-
   home.packages = with pkgs; [ swayidle wl-clipboard wlroots ];
 
   wayland.windowManager.sway = {
@@ -19,46 +13,45 @@ in {
       menu = "wofi --show drun";
 
       fonts = {
-        names = [ "UbuntuMono" ];
+        names = [ "NotoSans Nerd Font" ];
         style = "Medium";
-        size = 11.0;
+        size = 12.0;
       };
 
       bars = [{ command = "waybar"; }];
 
-      window.border = 1;
+      window.border = 3;
       gaps = {
-        inner = 10;
-        outer = 5;
+        inner = 8;
+        outer = 0;
       };
       colors = {
-        unfocused.border      = "#333333";
-        unfocused.background  = "#000000a0";
-        unfocused.text        = "#a0a0a0";
-        unfocused.indicator   = "#2d292e";
-        unfocused.childBorder = "#333333";
+        unfocused.border      = "#474f6f";
+        unfocused.background  = "#1a1b26";
+        unfocused.text        = "#a9b1d6";
+        unfocused.indicator   = "#474f6f";
+        unfocused.childBorder = "#474f6f";
         
-        focused.border      = "#808080";
-        focused.background  = "#000000";
-        focused.text        = "#ffffff";
-        focused.indicator   = "#2d292e";
-        focused.childBorder = "#ffffff";
+        focused.border      = "#7bc5e4";
+        focused.background  = "#1a1b26";
+        focused.text        = "#a9b1d6";
+        focused.indicator   = "#7bc5e4";
+        focused.childBorder = "#7bc5e4";
         
-        focusedInactive.border      = "#333333";
-        focusedInactive.background  = "#000000";
-        focusedInactive.text        = "#ffffff";
-        focusedInactive.indicator   = "#4e4850";
-        focusedInactive.childBorder = "#333333";
+        focusedInactive.border      = "#787c99";
+        focusedInactive.background  = "#1a1b26";
+        focusedInactive.text        = "#a9b1d6";
+        focusedInactive.indicator   = "#787c99";
+        focusedInactive.childBorder = "#787c99";
         
-        urgent.border      = "#000000";
-        urgent.background  = "#900000";
+        urgent.border      = "#d5556f";
+        urgent.background  = "#444b6a";
         urgent.text        = "#ffffff";
-        urgent.indicator   = "#900000";
-        urgent.childBorder = "#000000";
+        urgent.indicator   = "#d5556f";
+        urgent.childBorder = "#d5556f";
       };
-      
+
       startup = map (x: { command = x; }) [
-        ''~/.azotebg''
         # Make wob channels
         ''mkfifo $SWAYSOCK.volume.wob && tail -f $SWAYSOCK.volume.wob | wob''
         ''mkfifo $SWAYSOCK.brightness.wob && tail -f $SWAYSOCK.brightness.wob | wob \
@@ -88,7 +81,7 @@ in {
           # Screenshot
           "Print"             = ''exec grim ${filename}'';
           "Shift+Print"       = ''exec grim -g "$(slurp)" ${filename}'';
-          "${modifier}+Print" = ''exec grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" ${filename}'';
+          "Ctrl+Print" = ''exec grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" ${filename}'';
 
           # Special XF86 key bindings
           "XF86AudioRaiseVolume"       = audio "-ui 2";
@@ -107,6 +100,20 @@ in {
           "${modifier}+Shift+e" = ''exec swaynag -t warning -m \
             "You pressed the exit shortcut. Do you really want to exit sway? \
             This will end your Wayland session." -b "Yes, exit sway" "swaymsg exit" '';
+
+          # Workspaces
+          "${modifier}+1" = "workspace 1:browser";
+          "${modifier}+2" = "workspace 2:terminal";
+          "${modifier}+3" = "workspace 3:code";
+          "${modifier}+4" = "workspace 4:files";
+          "${modifier}+5" = "workspace 5:discord";
+          "${modifier}+6" = "workspace 6:settings";
+          "${modifier}+Shift+1" = "move container to workspace 1:browser";
+          "${modifier}+Shift+2" = "move container to workspace 2:terminal";
+          "${modifier}+Shift+3" = "move container to workspace 3:code";
+          "${modifier}+Shift+4" = "move container to workspace 4:files";
+          "${modifier}+Shift+5" = "move container to workspace 5:discord";
+          "${modifier}+Shift+6" = "move container to workspace 6:settings";
       };
 
        output."*" = {

@@ -12,11 +12,9 @@ in {
     ripgrep
     unzip
     tldr
-    pandoc
     pamixer
     brightnessctl
     playerctl
-    screenfetch
 
     gcc
 

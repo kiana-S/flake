@@ -3,6 +3,6 @@
 # manager, so it's fine.
 
 import ../../common/home-manager/wayland/waybar.nix
-[ "sway/workspaces" "sway/mode" ]
+[ "sway/workspaces" "sway/mode" "custom/sep" "cpu" "memory" "temperature" ]
 [ "sway/window" ]
-[ "pulseaudio" "backlight" "network" "battery" "clock" "idle_inhibitor" ]
+[ "battery" "pulseaudio" "backlight" "network" "clock" "idle_inhibitor" ]

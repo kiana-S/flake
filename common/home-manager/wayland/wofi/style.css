@@ -1,18 +1,16 @@
-
 window {
-  margin: 0px;
-  background-color: rgba(0, 0, 0, 0.6);
-  font-size: 1.2em;
-  font-family: "Ubuntu Mono";
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1a1b26;
+  color: #a9b1d6;
+  font-size: 14px;
+  font-family: "JetBrainsMono Nerd Font";
 }
 
 #input {
   color: white;
-  margin: 0px;
-  margin-right: 10px;
-  margin-left: 10px;
-  border: 0px;
-  border-bottom: 2px solid #eef279;
+  margin-bottom: 8px;
   border-radius: 0px;
   background-color: transparent;
 }
@@ -22,12 +20,8 @@ window {
   margin-right: 10px;
   margin-left: 10px;
   border-top: 2px solid transparent;
-  color: white;
+  color: #;
   background-color: transparent;
-}
-
-expander .entry {
-  margin-left: -15px;
 }
 
 #img {
@@ -46,23 +40,21 @@ expander .entry {
   background-color: transparent;
 }
 
-#entry{
+#entry {
+  display: grid;
   padding: 1px;
   padding-left: 4px;
   padding-right: 4px;
   margin: 0px;
 }
 
-#entry:selected{
-  background-color: #eef279;
-  color: #141414;
-  outline: 0px;
-  border-radius: 0px;
+image { display: block; }
+label { display: flex; }
+
+#entry:selected {
 }
 
-#text:selected{
-  background-color: #eef279;
-  color: #141414;
+#text:selected {
   outline: 0px;
   border-radius: 0px;
 }

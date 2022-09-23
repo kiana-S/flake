@@ -1,6 +1,5 @@
 { ... }:
-let bright-green = ''#60c000'';
-in {
+{
   programs.starship.enable = true;
 
   # This config is intended to make starship look like Tide,
@@ -18,9 +17,9 @@ in {
     character =
       let char = "⮞"; charVi = "⮜";
       in {
-        success_symbol = "[${char}](bold ${bright-green})";
-        error_symbol   = "[${char}](bold red)";
-        vicmd_symbol   = "[${charVi}](bold ${bright-green})";
+        success_symbol = "[${char}](bold bright-green)";
+        error_symbol   = "[${char}](bold bright-red)";
+        vicmd_symbol   = "[${charVi}](bold bright-green)";
     };
 
     directory = {
@@ -38,7 +37,7 @@ in {
     jobs = {
       format = "[$symbol$number]($style) ";
       symbol = " ";
-      style = "${bright-green}";
+      style = "green";
     };
 
     status = {
@@ -52,7 +51,7 @@ in {
       style = "dimmed cyan";
     };
 
-    git_branch.style = "bold ${bright-green}";
+    git_branch.style = "bold green";
 
     git_status = {
       format = "$stashed$ahead_behind$conflicted$deleted$renamed$staged$modified$untracked";
@@ -63,9 +62,9 @@ in {
       diverged = "[⇕ ](cyan)";
       untracked = "[?$count ](cyan)";
       stashed = "[\\$$count ](cyan)";
-      modified = "[!$count ](bright-yellow)";
-      staged = "[+$count ](bright-yellow)";
-      renamed = "[»$count ](bright-yellow)";
+      modified = "[!$count ](yellow)";
+      staged = "[+$count ](yellow)";
+      renamed = "[»$count ](yellow)";
       deleted = "[✘$count ](red)";
     };
   };

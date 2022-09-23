@@ -30,7 +30,7 @@
         default-timeout=0
         ignore-timeout=1
 
-        [app-name=lightcord]
+        [app-name=discordcanary]
         format=<b>%s</b>\n%b
         border-color=#88c0d0
       '';

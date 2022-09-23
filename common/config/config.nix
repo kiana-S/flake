@@ -44,8 +44,8 @@ nixpkgs, # The flake's input version of nixpkgs
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      ubuntu_font_family
-      (nerdfonts.override { fonts = [ "FiraCode" "Ubuntu" "UbuntuMono" ]; })
+      font-awesome
+      (nerdfonts.override { fonts = [ "UbuntuMono" "JetBrainsMono" ]; })
       meslo-lgs-nf
       victor-mono
     ];

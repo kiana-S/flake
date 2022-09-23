@@ -5,31 +5,30 @@
     settings = {
       window.opacity = 0.9;
       
-      # Based on the GNOME Dark theme
+      # Based on the Tokyo Night theme
       colors.primary = {
-        foreground = "#d0cfcc";
-        background = "#000000";
-        bright_foreground = "#ffffff";
+        foreground = "#a9b1d6";
+        background = "#1a1b26";
       };
       colors.normal = {
-        black   = "#171421";
-        red     = "#c01c28";
-        green   = "#26a269";
-        yellow  = "#a2734c";
-        blue    = "#12488b";
-        magenta = "#a347ba";
-        cyan    = "#2aa1b3";
-        white   = "#d0cfcc";
+        black   = "#32344a";
+        red     = "#ce7284";
+        green   = "#7dc5a0";
+        yellow  = "#caaa6a";
+        blue    = "#7bc5e4";
+        magenta = "#ad8ee6";
+        cyan    = "#449dab";
+        white   = "#787c99";
       };
       colors.bright = {
-        black   = "#5e5c64";
-        red     = "#f66151";
-        green   = "#33d17a";
-        yellow  = "#e9ad0c";
-        blue    = "#2a7bde";
-        magenta = "#c061cb";
-        cyan    = "#33c7de";
-        white   = "#ffffff";
+        black   = "#444b6a";
+        red     = "#d5556f";
+        green   = "#b9f27c";
+        yellow  = "#ff9e64";
+        blue    = "#7da6ff";
+        magenta = "#bb9af7";
+        cyan    = "#0db9d7";
+        white   = "#acb0d0";
       };
 
       font =
