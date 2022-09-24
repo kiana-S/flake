@@ -48,6 +48,7 @@ nixpkgs, # The flake's input version of nixpkgs
       (nerdfonts.override { fonts = [ "UbuntuMono" "JetBrainsMono" ]; })
       meslo-lgs-nf
       victor-mono
+      ubuntu_font_family
     ];
 
     fontconfig = {

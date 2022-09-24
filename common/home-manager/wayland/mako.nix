@@ -11,7 +11,7 @@
     margin = "5";
     padding = "5,10";
     borderSize = 2;
-    borderColor = "#04c2e8";
+    borderColor = "#7bc5e4";
     borderRadius = 5;
     defaultTimeout = 10000;
     
@@ -20,19 +20,23 @@
         [urgency=low]
         format=<i>%s</i>\n%b
         background-color=#111111c0
-        border-color=#ffffff
+        border-color=#787c99
         border-size=1
 
         [urgency=high]
         background-color=#1e0909d0
-        border-color=#bf616a
-        border-size=4
+        border-color=#ce7284
+        border-size=3
         default-timeout=0
         ignore-timeout=1
 
+        [app-name=discord]
+        format=<b>%s</b>\n\n%b
+        border-color=#7da6ff
+
         [app-name=discordcanary]
-        format=<b>%s</b>\n%b
-        border-color=#88c0d0
+        format=<b>%s</b>\n\n%b
+        border-color=#7da6ff
       '';
   };
 }

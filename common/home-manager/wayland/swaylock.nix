@@ -12,12 +12,12 @@
       indicator
       screenshots
 
-      font=Ubuntu
-      text-color=ffffff
+      font=UbuntuMono
+      text-color=a9b1d6
 
       color=00000000
-      ring-color=151fea
-      key-hl-color=6ecef4
+      ring-color=7da6ff
+      key-hl-color=7bc5e4
 
       line-uses-inside
 
@@ -26,7 +26,7 @@
 
 
       clock
-      datestr=%A, %e.%m.%Y
+      datestr=%A, %Y-%m-%e
 
       effect-scale=0.4
       effect-vignette=0.3:0.7

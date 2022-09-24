@@ -22,12 +22,12 @@ modules-right:
             format = "<big>{icon}</big>";
 
             persistent_workspaces = {
-              "1:browser" = [];
-              "2:terminal" = [];
-              "3:code" = [];
-              "4:files" = [];
-              "5:discord" = [];
-              "6:settings" = [];
+              "10:browser" = [];
+              "20:terminal" = [];
+              "30:code" = [];
+              "40:files" = [];
+              "50:discord" = [];
+              "60:settings" = [];
             };
 
             format-icons = {

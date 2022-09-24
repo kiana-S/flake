@@ -2,9 +2,6 @@
 {
   programs.starship.enable = true;
 
-  # This config is intended to make starship look like Tide,
-  # since that was the previous prompt I used and I think it looks better.
-
   programs.starship.settings = {
 
     format = "$directory$nix_shell$all$fill$cmd_duration$status$jobs$time$line_break$character";

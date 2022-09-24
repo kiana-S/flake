@@ -10,12 +10,12 @@ in {
     wrapperFeatures.gtk = true;
     config = {
       inherit modifier terminal;
-      menu = "wofi --show drun";
+      menu = "rofi -show drun";
 
       fonts = {
-        names = [ "NotoSans Nerd Font" ];
+        names = [ "JetBrainsMono Nerd Font" ];
         style = "Medium";
-        size = 12.0;
+        size = 10.0;
       };
 
       bars = [{ command = "waybar"; }];
@@ -75,8 +75,12 @@ in {
         # Grim screenshot file name
         filename = ''~/Pictures/$(date +%Y-%m-%d_%H-%M-%S).png'';
         in pkgs.lib.mkOptionDefault {
-          "${modifier}+Shift+d" = ''exec wofi --show run'';
-          "${modifier}+Shift+m" = ''exec swaylock'';
+          "${modifier}+Shift+d" = "exec rofi -show run";
+          # "${modifier}+w"       = "exec rofi -show window";
+          # "${modifier}+Shift+w" = "exec rofi -show workspace";
+
+          "${modifier}+t" = "layout tabbed";
+          "${modifier}+Shift+m" = "exec swaylock";
 
           # Screenshot
           "Print"             = ''exec grim ${filename}'';
@@ -102,18 +106,18 @@ in {
             This will end your Wayland session." -b "Yes, exit sway" "swaymsg exit" '';
 
           # Workspaces
-          "${modifier}+1" = "workspace 1:browser";
-          "${modifier}+2" = "workspace 2:terminal";
-          "${modifier}+3" = "workspace 3:code";
-          "${modifier}+4" = "workspace 4:files";
-          "${modifier}+5" = "workspace 5:discord";
-          "${modifier}+6" = "workspace 6:settings";
-          "${modifier}+Shift+1" = "move container to workspace 1:browser";
-          "${modifier}+Shift+2" = "move container to workspace 2:terminal";
-          "${modifier}+Shift+3" = "move container to workspace 3:code";
-          "${modifier}+Shift+4" = "move container to workspace 4:files";
-          "${modifier}+Shift+5" = "move container to workspace 5:discord";
-          "${modifier}+Shift+6" = "move container to workspace 6:settings";
+          "${modifier}+1" = "workspace 10:browser";
+          "${modifier}+2" = "workspace 20:terminal";
+          "${modifier}+3" = "workspace 30:code";
+          "${modifier}+4" = "workspace 40:files";
+          "${modifier}+5" = "workspace 50:discord";
+          "${modifier}+6" = "workspace 60:settings";
+          "${modifier}+Shift+1" = "move container to workspace 10:browser";
+          "${modifier}+Shift+2" = "move container to workspace 20:terminal";
+          "${modifier}+Shift+3" = "move container to workspace 30:code";
+          "${modifier}+Shift+4" = "move container to workspace 40:files";
+          "${modifier}+Shift+5" = "move container to workspace 50:discord";
+          "${modifier}+Shift+6" = "move container to workspace 60:settings";
       };
 
        output."*" = {
