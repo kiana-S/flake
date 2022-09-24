@@ -116,16 +116,16 @@ modules-right:
           "pulseaudio" = {
             scroll-step = 1;
             smooth-scrolling-threshold = 2.0;
-            format = "${spanfa}{icon}</span>{volume}%";
-            format-bluetooth = " {icon} {volume}%";
-            format-bluetooth-muted = "  0%";
-            format-muted = " {volume}%";
+            format = "${spanfa}{icon}</span> {volume}%";
+            format-bluetooth = " ${spanfa}{icon}</span> {volume}%";
+            format-bluetooth-muted = "${spanfa} </span>  0%";
+            format-muted = "${spanfa}</span> {volume}%";
 
             format-icons.headphone  = "";
             format-icons.phone      = "";
             format-icons.portable   = "";
             format-icons.car        = "";
-            format-icons.default    = [ "" "" " " ];
+            format-icons.default    = [ "" "" "" ];
 
             on-click = "pamixer -t";
           };
