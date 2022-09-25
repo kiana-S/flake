@@ -1,25 +1,18 @@
 configuration {
   cycle: false;
-  //modi: "drun,run,window:~/.config/rofi/window.sh,workspace:~/.config/rofi/workspace.sh";
-  modi: "drun,run";
+  modi: "drun,run,window:~/.config/rofi/window.sh,workspace:~/.config/rofi/workspace.sh";
   font: "JetBrainsMono Nerd Font 14";
   location: 0;
   terminal: "alacritty";
 
   show-icons: true;
-  run-show-icons: false;
   hide-scrollbar: true;
-  sidebar-mode: true;
 
   drun-display-format: "{name}";
   display-drun: "   Apps ";
   display-run: "   Run ";
   display-window: " 﩯  Window ";
   display-workspace: "   Workspace ";
-
-  run {
-    show-icons: false;
-  }
 }
 
 @theme "tokyonight"

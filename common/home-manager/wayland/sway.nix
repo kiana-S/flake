@@ -75,9 +75,9 @@ in {
         # Grim screenshot file name
         filename = ''~/Pictures/$(date +%Y-%m-%d_%H-%M-%S).png'';
         in pkgs.lib.mkOptionDefault {
-          "${modifier}+Shift+d" = "exec rofi -show run";
-          # "${modifier}+w"       = "exec rofi -show window";
-          # "${modifier}+Shift+w" = "exec rofi -show workspace";
+          "${modifier}+Shift+d" = "exec rofi -show run -config ~/.config/rofi/noicons.rasi";
+          "${modifier}+w"       = "exec rofi -show window -config ~/.config/rofi/noicons.rasi";
+          "${modifier}+Shift+w" = "exec rofi -show workspace -config ~/.config/rofi/noicons.rasi";
 
           "${modifier}+t" = "layout tabbed";
           "${modifier}+Shift+m" = "exec swaylock";
