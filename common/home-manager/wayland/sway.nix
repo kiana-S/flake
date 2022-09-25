@@ -85,7 +85,7 @@ in {
           # Screenshot
           "Print"             = ''exec grim ${filename}'';
           "Shift+Print"       = ''exec grim -g "$(slurp)" ${filename}'';
-          "Ctrl+Print" = ''exec grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" ${filename}'';
+          "Control+Print" = ''exec grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" ${filename}'';
 
           # Special XF86 key bindings
           "XF86AudioRaiseVolume"       = audio "-ui 2";

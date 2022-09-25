@@ -1,6 +1,4 @@
-{ config, pkgs, nur,
-nixpkgs, # The flake's input version of nixpkgs
-... }:
+{ config, pkgs, nur, ... }:
 {
   nix.package = pkgs.nixFlakes;
   nix.extraOptions = ''

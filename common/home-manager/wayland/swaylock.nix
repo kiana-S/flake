@@ -13,7 +13,7 @@
       screenshots
 
       font=UbuntuMono
-      text-color=a9b1d6
+      text-color=ffffff
 
       color=00000000
       ring-color=7da6ff

@@ -9,7 +9,7 @@ modules-right:
     settings =
       let spanfa = "<span font=\"Font Awesome 5 Regular 11\">";
       in [{
-        height = 30;
+        height = 32;
         margin = "8 8 0";
 
         inherit modules-left modules-center modules-right;
@@ -94,7 +94,7 @@ modules-right:
           "temperature" = {
             # thermal-zone = 2;
             # hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
-            critical-threshold = 70;
+            critical-threshold = 80;
             format = "${spanfa}<small>{icon}</small></span> {temperatureC}°C";
             format-icons = [ "" "" "" "" "" ];
           };
@@ -147,22 +147,14 @@ modules-right:
       ''
         @define-color background #1a1b26;
         @define-color foreground #a9b1d6;
-        @define-color black #32344a;
         @define-color red #ce7284;
         @define-color green #7dc5a0;
         @define-color yellow #caaa6a;
         @define-color blue #7bc5e4;
         @define-color magenta #ad8ee6;
-        @define-color cyan #449dab;
-        @define-color white #787c99;
-        @define-color altblack #444b6a;
         @define-color altred #d5556f;
         @define-color altgreen #b9f27c;
         @define-color altyellow #ff9e64;
-        @define-color altblue #7da6ff;
-        @define-color altmagenta #bb9af7;
-        @define-color altcyan #0db9d7;
-        @define-color altwhite #acb0d0;
         @define-color altblend #282e49;
         @define-color empty #474f6f;
         @define-color pink #c386c0;
@@ -178,7 +170,7 @@ modules-right:
             background-color: @background;
             border-radius: 8px;
             color: @foreground;
-            padding: 3px 0;
+            padding: 3px 0px;
         }
 
         #custom-sep {
@@ -191,8 +183,8 @@ modules-right:
         }
 
         #workspaces button {
-            padding: 0 3px;
-            border-radius: 0;
+            padding: 0px 3px;
+            border-radius: 0px;
             color: @blue;
         }
 
@@ -201,13 +193,13 @@ modules-right:
             text-shadow: inherit;
             background: @background;
             border: none;
-            padding: 0 3px;
+            padding: 0px 3px;
         }
 
         #workspaces button.persistent {color: @empty;}
         #workspaces button.focused {
           color: shade(@pink, 1.1);
-          text-shadow: 0 0 2 shade(@pink, 1.2);
+          text-shadow: 0px 0px 2px shade(@pink, 1.2);
         }
         #workspaces button.urgent {
             background-color: @altred;
@@ -226,34 +218,34 @@ modules-right:
         #mode,
         #idle_inhibitor,
         #mpd {
-            margin: 0 8px;
+            margin: 0px 8px;
         }
 
         #idle_inhibitor {
-            padding: 0 8px 0 0;
+            padding: 0px 8px 0px 0px;
         }
 
 
         #cpu, #pulseaudio {
             background-color: @altblend;
-            margin: 3px 0 3px 2px;
+            margin: 3px 0px 3px 2px;
             padding-right: 5px;
             padding-left: 8px;
-            border-radius: 18px 0 0 18px;
+            border-radius: 18px 0px 0px 18px;
         }
 
         #backlight, #memory {
             background-color: @altblend;
-            margin: 3px 4px 3px 0;
+            margin: 3px 4px 3px 0px;
             padding-left: 5px;
             padding-right: 8px;
-            border-radius: 0 18px 18px 0;
+            border-radius: 0px 18px 18px 0px;
         }
 
         #network {
             background-color: @altblend;
             margin: 3px 4px;
-            padding: 0 6px;
+            padding: 0px 6px;
             border-radius: 18px;
         }
 
@@ -263,16 +255,28 @@ modules-right:
             font-size: 12px;
         }
 
-        #mode {color: @cyan;}
+        #mode {color: @magenta;}
         #cpu {color: @green;}
         #memory {color: @yellow;}
         #temperature {color: @blue;}
         #clock {color: @blue;}
 
+        #temperature {color: @blue;}
+        #temperature.critical {color: @altyellow;}
+
+        @keyframes blink { to { color: @background; } }
+
         #battery {color: @green;}
         #battery.warning:not(.charging) {color: @altyellow;}
         #battery.low:not(.charging) {color: @altred;}
-        #battery.critical:not(.charging) {color: #ff2525;}
+        #battery.critical:not(.charging) {
+            color: #ff2525;
+            animation-name: blink;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
 
         #backlight {color: @yellow;}
         #network {color: @green;}

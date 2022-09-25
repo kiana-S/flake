@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
 if [ $# -ne 0 ]; then
-    id=echo "$@" | cut -d ' ' -f1
+    id=$(echo "$@" | cut -d ' ' -f1)
     swaymsg "[con_id=$id]" focus
+
+    # Hack to get around weird bug
+    pkill rofi
     exit 0
 fi
 
