@@ -226,12 +226,31 @@ modules-right:
         }
 
 
-        #cpu, #pulseaudio {
+        #cpu {
             background-color: @altblend;
             margin: 3px 0px 3px 2px;
             padding-right: 5px;
             padding-left: 8px;
             border-radius: 18px 0px 0px 18px;
+        }
+
+        #pulseaudio {
+            background-color: @altblend;
+            ${
+              if builtins.elem "backlight" modules-right then
+                ''
+                margin: 3px 0px 3px 2px;
+                padding-right: 5px;
+                padding-left: 8px;
+                border-radius: 18px 0px 0px 18px;
+                ''
+              else
+                ''
+                margin: 3px 2px;
+                padding: 0px 8px;
+                border-radius: 18px;
+                ''
+            }
         }
 
         #backlight, #memory {
@@ -255,7 +274,11 @@ modules-right:
             font-size: 12px;
         }
 
-        #mode {color: @magenta;}
+        #mode {
+            color: @magenta;
+            text-shadow: 0px 0px 2px shade(@magenta, 1.05);
+        }
+
         #cpu {color: @green;}
         #memory {color: @yellow;}
         #temperature {color: @blue;}
