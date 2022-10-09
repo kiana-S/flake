@@ -42,9 +42,7 @@
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      font-awesome
       (nerdfonts.override { fonts = [ "UbuntuMono" "JetBrainsMono" ]; })
-      meslo-lgs-nf
       victor-mono
       ubuntu_font_family
     ];
@@ -54,7 +52,7 @@
       defaultFonts = {
         serif = [ "Noto Serif" ];
         sansSerif = [ "Noto Sans" ];
-        monospace = [ "Meslo Nerd Font" ];
+        monospace = [ "VictorMono" ];
       };
     };
   };

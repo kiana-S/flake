@@ -82,10 +82,13 @@ in {
           "${modifier}+t" = "layout tabbed";
           "${modifier}+Shift+m" = "exec swaylock";
 
+          # Emacs Everywhere
+          "${modifier}+Mod1+e" = "emacsclient --eval '(emacs-everywhere)'";
+
           # Screenshot
           "Print"             = ''exec grim ${filename}'';
           "Shift+Print"       = ''exec grim -g "$(slurp)" ${filename}'';
-          "Control+Print" = ''exec grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" ${filename}'';
+          "Mod1+Print" = ''exec grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" ${filename}'';
 
           # Special XF86 key bindings
           "XF86AudioRaiseVolume"       = audio "-ui 2";

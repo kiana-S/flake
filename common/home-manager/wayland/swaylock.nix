@@ -26,7 +26,7 @@
 
 
       clock
-      datestr=%A, %Y-%m-%e
+      datestr=%A, %Y-%m-%d
 
       effect-scale=0.4
       effect-vignette=0.3:0.7
