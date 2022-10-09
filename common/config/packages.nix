@@ -1,4 +1,4 @@
-{ config, pkgs, emacs-overlay, ... }:
+{ config, pkgs, ... }:
 let
   # nix-direnv with flake support
   nix-direnv-with-flakes = pkgs.nix-direnv.override { enableFlakes = true; };
@@ -34,9 +34,8 @@ in {
   services.gnome.gnome-keyring.enable = true;
 
 
-  nixpkgs.overlays = [ emacs-overlay.overlay ];
   services.emacs.enable = true;
-  services.emacs.package = pkgs.emacsPgtkNativeComp;
+  services.emacs.package = pkgs.emacs28-gtk;
 
   # direnv setup
 
