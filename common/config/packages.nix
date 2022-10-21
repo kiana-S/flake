@@ -16,8 +16,11 @@ in {
     brightnessctl
     playerctl
 
-    gcc
+    pandoc
+    gnuplot
+    graphviz
 
+    gcc
     wob
     grim
     slurp

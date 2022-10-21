@@ -43,6 +43,7 @@
       noto-fonts-cjk
       noto-fonts-emoji
       (nerdfonts.override { fonts = [ "UbuntuMono" "JetBrainsMono" ]; })
+      font-awesome
       victor-mono
       ubuntu_font_family
     ];
