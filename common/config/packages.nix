@@ -19,6 +19,10 @@ in {
     pandoc
     gnuplot
     graphviz
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
 
     gcc
     wob
