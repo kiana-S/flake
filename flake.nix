@@ -7,6 +7,9 @@ inputs = rec {
 
   home-manager.url = "github:nix-community/home-manager/master";
   home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+  tokyo-night-sddm-src.url = "github:rototrash/tokyo-night-sddm";
+  tokyo-night-sddm-src.flake = false;
 };
 outputs = { self,
             nixpkgs,
@@ -16,11 +19,12 @@ outputs = { self,
   let
     system = "x86_64-linux";
     username = "kiana";
-    moduleArgs = inputs // { inherit system username; };
+    fullname = "Kiana Sheibani";
+    moduleArgs = inputs // { inherit system username fullname; };
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
-      "kiana-desktop" = lib.makeOverridable lib.nixosSystem {
+      "${username}-desktop" = lib.makeOverridable lib.nixosSystem {
         inherit system;
         modules = [
           { _module.args = moduleArgs; }
@@ -36,7 +40,7 @@ outputs = { self,
         ]; 
       };
 
-      "kiana-laptop" = lib.makeOverridable lib.nixosSystem {
+      "${username}-laptop" = lib.makeOverridable lib.nixosSystem {
         inherit system;
         modules = [
           { _module.args = moduleArgs; }

@@ -1,25 +1,30 @@
-{ config, pkgs, username, ... }:
-{
-  environment.systemPackages = with pkgs; [
-    # Greeter
-    greetd.gtkgreet
-    # Window manager used to display the greeter
-    cage
+{ config, pkgs, tokyo-night-sddm-src, ... }:
+let
+  tokyo-night-sddm = with pkgs.libsForQt5; pkgs.stdenv.mkDerivation {
+    name = "tokyo-night-sddm";
+    src = tokyo-night-sddm-src;
+    installPhase = ''
+      cp -f ${./tokyo-night-sddm/theme.conf} ./theme.conf
+      mkdir -p $out/share/sddm/themes/tokyo-night-sddm
+      mv * $out/share/sddm/themes/tokyo-night-sddm
+    '';
+  };
+in {
+  environment.systemPackages = with pkgs.libsForQt5; [
+    tokyo-night-sddm # Theme
+    qtbase
+    qtsvg
+    qtquickcontrols2
+    qtgraphicaleffects
   ];
 
-  services.greetd.enable = true;
-  services.greetd.settings = {
-    default_session = {
-      command = "cage -s -- gtkgreet";
-      user = "greeter";
+  services.xserver = {
+    enable = true;
+
+    displayManager.defaultSession = "sway";
+    displayManager.sddm = {
+      enable = true;
+      theme = "tokyo-night-sddm";
     };
-  };
-  
-  environment.etc = {
-    "greetd/environments".text = ''
-      sway
-      fish
-      bash
-    '';
   };
 }

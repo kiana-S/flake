@@ -73,7 +73,24 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "nur": "nur"
+        "nur": "nur",
+        "tokyo-night-sddm-src": "tokyo-night-sddm-src"
+      }
+    },
+    "tokyo-night-sddm-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1639827917,
+        "narHash": "sha256-2kHDN13U2Bfx3kL3YWWEVeLVYTR1k8lKzmQuXScBlIA=",
+        "owner": "rototrash",
+        "repo": "tokyo-night-sddm",
+        "rev": "ee611c299f7fc675a6b101f492518adb9b52b915",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rototrash",
+        "repo": "tokyo-night-sddm",
+        "type": "github"
       }
     },
     "utils": {

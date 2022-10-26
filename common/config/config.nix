@@ -1,4 +1,4 @@
-{ config, pkgs, nur, ... }:
+{ config, pkgs, nur, username, fullname, ... }:
 {
   nix.package = pkgs.nixFlakes;
   nix.extraOptions = ''
@@ -28,9 +28,9 @@
   hardware.opengl.enable = true;
 
   users.mutableUsers = false;
-  users.users.kiana = {
+  users.users.${username} = {
     isNormalUser = true;
-    description = "Kiana Sheibani";
+    description = fullname;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };

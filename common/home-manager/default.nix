@@ -1,4 +1,4 @@
-{ config, pkgs, username, ... }:
+{ config, pkgs, username, fullname, ... }:
 {
   home.username = username;
   home.homeDirectory = "/home/" + username;
@@ -12,7 +12,7 @@
 
   programs.git = {
     enable = true;
-    userName = "Kiana Sheibani";
+    userName = fullname;
     userEmail = "kiana.a.sheibani@gmail.com";
 
     extraConfig = {
