@@ -1,6 +1,6 @@
 {
 description = "System conf";
-inputs = rec {
+inputs = {
   nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   nur.url = "github:nix-community/NUR";
   nixos-hardware.url = "github:NixOS/nixos-hardware";
@@ -20,21 +20,26 @@ outputs = { self,
     system = "x86_64-linux";
     username = "kiana";
     fullname = "Kiana Sheibani";
-    moduleArgs = inputs // { inherit system username fullname; };
+    moduleArgs = { inherit system username fullname; } // inputs;
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
       "${username}-desktop" = lib.makeOverridable lib.nixosSystem {
         inherit system;
         modules = [
-          { _module.args = moduleArgs; }
-          ./desktop/config
-          ./common/config
+          ./config
+
+          ./platform.nix
+          ./hardware-configuration/desktop.nix
+          { _module.args = moduleArgs;
+            custom.platform = "desktop"; }
           home-manager.nixosModules.home-manager
           {
+            home-manager.users.${username} = import ./home-manager;
+
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./desktop/home-manager;
+            home-manager.sharedModules = [ ./platform.nix { custom.platform = "desktop"; } ];
             home-manager.extraSpecialArgs = moduleArgs;
           }
         ]; 
@@ -43,15 +48,20 @@ outputs = { self,
       "${username}-laptop" = lib.makeOverridable lib.nixosSystem {
         inherit system;
         modules = [
-          { _module.args = moduleArgs; }
-          ./laptop/config
-          ./common/config
+          ./config
+
+          { _module.args = moduleArgs;
+            custom.platform = "laptop"; }
+          ./platform.nix
+          ./hardware-configuration/laptop.nix
           home-manager.nixosModules.home-manager
           nixos-hardware.nixosModules.microsoft-surface
           {
+            home-manager.users.${username} = import ./home-manager;
+
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./laptop/home-manager;
+            home-manager.sharedModules = [ ./platform.nix { custom.platform = "laptop"; } ];
             home-manager.extraSpecialArgs = moduleArgs;
           }
         ];

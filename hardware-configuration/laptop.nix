@@ -2,9 +2,10 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
-
 {
-  imports = [ ];
+  boot.loader.grub.useOSProber = true;
+  hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];

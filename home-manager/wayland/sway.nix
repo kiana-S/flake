@@ -124,7 +124,7 @@ in {
       };
 
        output."*" = {
-         bg = "${../../../assets/background.png} fill";
+         bg = "${../../assets/background.png} fill";
        };
     };
   };

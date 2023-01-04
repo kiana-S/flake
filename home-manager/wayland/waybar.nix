@@ -1,7 +1,4 @@
-modules-left:
-modules-center:
-modules-right:
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   programs.waybar = {
     enable = true;
@@ -12,7 +9,16 @@ modules-right:
         height = 32;
         margin = "8 8 0";
 
-        inherit modules-left modules-center modules-right;
+
+        modules-left = [ "sway/workspaces" "sway/mode" "custom/sep" "cpu" "memory" "temperature" ];
+        modules-center = [ "sway/window" ];
+
+        modules-right =
+          if config.custom.platform == "laptop" then
+            [ "battery" "pulseaudio" "backlight" "network" "clock" "idle_inhibitor" ]
+          else
+            [ "pulseaudio" "network" "clock" "idle_inhibitor" ];
+
 
         modules = {
           "sway/workspaces" = {
@@ -237,7 +243,7 @@ modules-right:
         #pulseaudio {
             background-color: @altblend;
             ${
-              if builtins.elem "backlight" modules-right then
+              if config.custom.platform == "laptop" then
                 ''
                 margin: 3px 0px 3px 2px;
                 padding-right: 5px;
