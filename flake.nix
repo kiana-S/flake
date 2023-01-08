@@ -18,6 +18,7 @@ outputs = { self,
             nixpkgs,
             home-manager,
             nixos-hardware,
+            mobile-nixos,
 ...}@inputs:
   let
     system = "x86_64-linux";
