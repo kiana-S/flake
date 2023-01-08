@@ -1,4 +1,4 @@
-{ config, pkgs, nur, username, fullname, ... }:
+{ config, pkgs, lib, nur, username, fullname, ... }:
 let
   inherit (config) platform;
   isMobile = platform == "mobile";
