@@ -7,7 +7,7 @@ inputs = {
   mobile-nixos.url = "github:wentam/mobile-nixos/ppp-pr";
   mobile-nixos.flake = false;
 
-  sxmo.url = "sourcehut:~noneucat/nur-packages";
+  sxmo.url = "github:kiana-S/nixos-sxmo";
   sxmo.flake = false;
 
   home-manager.url = "github:nix-community/home-manager/master";
@@ -28,12 +28,6 @@ outputs = { self,
     fullname = "Kiana Sheibani";
     moduleArgs = { inherit username fullname; } // inputs;
     lib = nixpkgs.lib;
-
-    sxmo-overlay = final: prev: {
-      nur.repos.noneucat = import sxmo { pkgs = final; };
-    };
-
-    sxmo-pkgs = import nixpkgs { system = "aarch64-linux"; overlays = [ sxmo-overlay ]; };
   in {
     nixosConfigurations = {
       "${username}-desktop" = lib.makeOverridable lib.nixosSystem {
@@ -91,7 +85,7 @@ outputs = { self,
           ./hardware-configuration/mobile.nix
           home-manager.nixosModules.home-manager
           (import (mobile-nixos + /lib/configuration.nix) { device = "pine64-pinephonepro"; })
-          sxmo-pkgs.nur.repos.noneucat.modules.pinephone.sxmo
+          (import sxmo { pkgs = import nixpkgs {}; }).modules.pinephone.sxmo
           {
             home-manager.users.${username} = import ./mobile/home-manager.nix;
 
