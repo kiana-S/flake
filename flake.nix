@@ -28,6 +28,12 @@ outputs = { self,
     fullname = "Kiana Sheibani";
     moduleArgs = { inherit username fullname; } // inputs;
     lib = nixpkgs.lib;
+
+    sxmo-overlay = final: prev: {
+      nur.repos.noneucat = import sxmo { pkgs = final; };
+    };
+
+    sxmo-pkgs = import nixpkgs { overlays = [ sxmo-overlay ]; };
   in {
     nixosConfigurations = {
       "${username}-desktop" = lib.makeOverridable lib.nixosSystem {
@@ -85,7 +91,7 @@ outputs = { self,
           ./hardware-configuration/mobile.nix
           home-manager.nixosModules.home-manager
           (import (mobile-nixos + /lib/configuration.nix) { device = "pine64-pinephonepro"; })
-          (import sxmo { pkgs = import nixpkgs {}; }).modules.pinephone.sxmo
+          sxmo-pkgs.nur.repos.noneucat.modules.pinephone.sxmo
           {
             home-manager.users.${username} = import ./mobile/home-manager.nix;
 
