@@ -22,6 +22,23 @@
         "type": "github"
       }
     },
+    "mobile-nixos": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1670190044,
+        "narHash": "sha256-YA3ochLKXQAv2p5GWHToIJdqJ/iyVIwCBeE5DoSrS0o=",
+        "owner": "wentam",
+        "repo": "mobile-nixos",
+        "rev": "93ce16b1a18e1ef83027d93c1f478926c6d75a76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wentam",
+        "ref": "ppp-pr",
+        "repo": "mobile-nixos",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1670174919,
@@ -53,28 +70,30 @@
         "type": "github"
       }
     },
-    "nur": {
-      "locked": {
-        "lastModified": 1670387514,
-        "narHash": "sha256-dSsoDMyoVwy60ZaGJNoCXEzYToYfdV6XYyadnliMJnE=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "25c0b2f7f43cbe50bf17f5c190c0aa6231d3754f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "mobile-nixos": "mobile-nixos",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "nur": "nur",
+        "sxmo": "sxmo",
         "tokyo-night-sddm-src": "tokyo-night-sddm-src"
+      }
+    },
+    "sxmo": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1621623139,
+        "narHash": "sha256-oVJGvVDxOc+JzyKu+7L03E3oAjZlI2Aya7YNvBNfkvg=",
+        "owner": "~noneucat",
+        "repo": "nur-packages",
+        "rev": "3211ca63ce22fe86dd1462cc550fd6605614b246",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~noneucat",
+        "repo": "nur-packages",
+        "type": "sourcehut"
       }
     },
     "tokyo-night-sddm-src": {

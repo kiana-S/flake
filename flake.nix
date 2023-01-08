@@ -2,11 +2,13 @@
 description = "System conf";
 inputs = {
   nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-  nur.url = "github:nix-community/NUR";
 
   nixos-hardware.url = "github:NixOS/nixos-hardware";
   mobile-nixos.url = "github:wentam/mobile-nixos/ppp-pr";
   mobile-nixos.flake = false;
+
+  sxmo.url = "sourcehut:~noneucat/nur-packages";
+  sxmo.flake = false;
 
   home-manager.url = "github:nix-community/home-manager/master";
   home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -19,6 +21,7 @@ outputs = { self,
             home-manager,
             nixos-hardware,
             mobile-nixos,
+            sxmo,
 ...}@inputs:
   let
     system = "x86_64-linux";
@@ -83,6 +86,7 @@ outputs = { self,
           ./hardware-configuration/mobile.nix
           home-manager.nixosModules.home-manager
           (import (mobile-nixos + /lib/configuration.nix) { device = "pine64-pinephonepro"; })
+          (import sxmo { pkgs = import nixpkgs {}; }).modules.pinephone.sxmo
           {
             home-manager.users.${username} = import ./mobile/home-manager.nix;
 

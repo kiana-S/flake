@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nur, username, fullname, ... }:
+{ config, pkgs, lib, username, fullname, ... }:
 let
   inherit (config) platform;
   isMobile = platform == "mobile";
@@ -18,7 +18,6 @@ in
     restrict-eval = false
   '';
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [ nur.overlay ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -87,12 +86,4 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
-}
-// lib.mkIf (platform == "mobile") {
-
-  hardware.bluetooth.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseAudioFull;
-  zramSwap.enable = true;
-
-  services.xserver.desktopManager.phosh.user = username;
 }
