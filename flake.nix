@@ -74,14 +74,14 @@ outputs = { self,
         inherit system;
         modules = [
           ./config
+          ./mobile/config.nix
 
           { _module.args = moduleArgs;
             platform = "mobile"; }
           ./platform.nix
           ./hardware-configuration/mobile.nix
           home-manager.nixosModules.home-manager
-          (import ${mobile-nixos}/lib/configuration.nix { device = "pine64-pinephonepro"; })
-          ${mobile-nixos}/examples/phosh/phosh.nix
+          (import (mobile-nixos + /lib/configuration.nix) { device = "pine64-pinephonepro"; })
           {
             home-manager.users.${username} = import ./mobile/home-manager.nix;
 
