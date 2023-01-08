@@ -24,15 +24,14 @@ outputs = { self,
             sxmo,
 ...}@inputs:
   let
-    system = "x86_64-linux";
     username = "kiana";
     fullname = "Kiana Sheibani";
-    moduleArgs = { inherit system username fullname; } // inputs;
+    moduleArgs = { inherit username fullname; } // inputs;
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
       "${username}-desktop" = lib.makeOverridable lib.nixosSystem {
-        inherit system;
+        system = "x86_64-linux";
         modules = [
           ./config
 
@@ -53,7 +52,7 @@ outputs = { self,
       };
 
       "${username}-laptop" = lib.makeOverridable lib.nixosSystem {
-        inherit system;
+        system = "x86_64-linux";
         modules = [
           ./config
 
@@ -75,7 +74,7 @@ outputs = { self,
       };
 
       "${username}-mobile" = lib.makeOverridable lib.nixosSystem {
-        inherit system;
+        system = "aarch64-linux";
         modules = [
           ./config
           ./mobile/config.nix
