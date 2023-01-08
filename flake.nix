@@ -33,7 +33,7 @@ outputs = { self,
       nur.repos.noneucat = import sxmo { pkgs = final; };
     };
 
-    sxmo-pkgs = import nixpkgs { overlays = [ sxmo-overlay ]; };
+    sxmo-pkgs = import nixpkgs { system = "aarch64-linux"; overlays = [ sxmo-overlay ]; };
   in {
     nixosConfigurations = {
       "${username}-desktop" = lib.makeOverridable lib.nixosSystem {
