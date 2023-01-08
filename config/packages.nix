@@ -22,10 +22,6 @@ in {
     (aspellWithDicts (ps: with ps; [ en en-computers en-science ]))
 
     gcc
-    wob
-    grim
-    slurp
-    imv
 
     direnv
     nix-direnv-with-flakes

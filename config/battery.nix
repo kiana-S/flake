@@ -1,5 +1,5 @@
 { config, lib, ... }:
-lib.mkIf (config.custom.platform == "laptop") {
+lib.mkIf (config.platform == "laptop") {
   services.upower = {
     enable = true;
     

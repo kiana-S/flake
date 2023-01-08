@@ -3,7 +3,14 @@ let
 modifier = "Mod4";
 terminal = "alacritty";
 in {
-  home.packages = with pkgs; [ swayidle wl-clipboard wlroots ];
+  home.packages = with pkgs; [
+    swayidle
+    wl-clipboard
+    wlroots
+    grim
+    slurp
+    imv
+  ];
 
   wayland.windowManager.sway = {
     enable = true;
@@ -53,9 +60,10 @@ in {
 
       startup = map (x: { command = x; }) [
         # Make wob channels
-        ''mkfifo $SWAYSOCK.volume.wob && tail -f $SWAYSOCK.volume.wob | wob''
-        ''mkfifo $SWAYSOCK.brightness.wob && tail -f $SWAYSOCK.brightness.wob | wob \
-                   --border-color "#FFFF00FF" --bar-color "#FFFF00FF"''
+        ''mkfifo $XDG_RUNTIME_DIR/wob_volume.sock && tail -f $XDG_RUNTIME_DIR/wob_volume.sock \
+            | wob -c ~/.config/wob/volume.ini''
+        ''mkfifo $XDG_RUNTIME_DIR/wob_brightness.sock && tail -f $XDG_RUNTIME_DIR/wob_brightness.sock \
+            | wob -c ~/.config/wob/brightness.ini''
         ''swayidle timeout 120 'swaylock -f --grace=180' \
                    timeout 600 'systemctl suspend' \
                    before-sleep 'swaylock -f' ''
@@ -65,10 +73,10 @@ in {
 
       keybindings = let
         # Volume using pamixer and wob
-        audio-disp = ''pamixer --get-volume > $SWAYSOCK.volume.wob'';
+        audio-disp = ''pamixer --get-volume > $XDG_RUNTIME_DIR/wob_volume.sock'';
         audio      = cmd: "exec pamixer ${cmd} && ${audio-disp}";
         # Brightness using brightnessctl and wob
-        brightness-disp = ''brightnessctl -e -m | cut -d "," -f4 | tr -d "%" > $SWAYSOCK.brightness.wob'';
+        brightness-disp = ''brightnessctl -e -m | cut -d "," -f4 | tr -d "%" > $XDG_RUNTIME_DIR/wob_brightness.sock'';
         brightness      = x: "exec brightnessctl -e set ${x} && ${brightness-disp}";
         # Play controls using playerctl
         playerctl = cmd: "exec playerctl ${cmd}";

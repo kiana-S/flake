@@ -1,5 +1,5 @@
 { config, lib, pkgs, tokyo-night-sddm-src, ... }:
-lib.mkIf (config.custom.platform != "mobile")
+lib.mkIf (config.platform != "mobile")
   (let
     tokyo-night-sddm = with pkgs.libsForQt5; pkgs.stdenv.mkDerivation {
       name = "tokyo-night-sddm";

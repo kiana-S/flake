@@ -14,7 +14,7 @@
         modules-center = [ "sway/window" ];
 
         modules-right =
-          if config.custom.platform == "laptop" then
+          if config.platform == "laptop" then
             [ "battery" "pulseaudio" "backlight" "network" "clock" "idle_inhibitor" ]
           else
             [ "pulseaudio" "network" "clock" "idle_inhibitor" ];
@@ -243,7 +243,7 @@
         #pulseaudio {
             background-color: @altblend;
             ${
-              if config.custom.platform == "laptop" then
+              if config.platform == "laptop" then
                 ''
                 margin: 3px 0px 3px 2px;
                 padding-right: 5px;

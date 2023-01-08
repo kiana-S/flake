@@ -32,14 +32,14 @@ outputs = { self,
           ./platform.nix
           ./hardware-configuration/desktop.nix
           { _module.args = moduleArgs;
-            custom.platform = "desktop"; }
+            platform = "desktop"; }
           home-manager.nixosModules.home-manager
           {
             home-manager.users.${username} = import ./home-manager;
 
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [ ./platform.nix { custom.platform = "desktop"; } ];
+            home-manager.sharedModules = [ ./platform.nix { platform = "desktop"; } ];
             home-manager.extraSpecialArgs = moduleArgs;
           }
         ]; 
@@ -51,7 +51,7 @@ outputs = { self,
           ./config
 
           { _module.args = moduleArgs;
-            custom.platform = "laptop"; }
+            platform = "laptop"; }
           ./platform.nix
           ./hardware-configuration/laptop.nix
           home-manager.nixosModules.home-manager
@@ -61,7 +61,7 @@ outputs = { self,
 
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [ ./platform.nix { custom.platform = "laptop"; } ];
+            home-manager.sharedModules = [ ./platform.nix { platform = "laptop"; } ];
             home-manager.extraSpecialArgs = moduleArgs;
           }
         ];

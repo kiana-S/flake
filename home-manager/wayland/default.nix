@@ -11,5 +11,6 @@
     ./mako.nix
     ./rofi.nix
     ./waybar.nix
+    ./wob.nix
   ];
 }
