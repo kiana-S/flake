@@ -1,6 +1,7 @@
 { config, pkgs, nur, username, fullname, ... }:
 let
-  inherit (config.custom) platform;
+  inherit (config) platform;
+  isMobile = platform == "mobile";
 
   hashedPassword =
       if platform == "desktop" then
@@ -43,7 +44,8 @@ in
   users.users.${username} = {
     isNormalUser = true;
     description = fullname;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" ]
+                  ++ lib.optionals isMobile [ "dialout" "feedbackd" "video" ];
     shell = pkgs.fish;
     inherit hashedPassword;
   };
@@ -66,8 +68,8 @@ in
     fontconfig = {
       enable = true;
       defaultFonts = {
-        serif = [ "Noto Serif" ];
-        sansSerif = [ "Noto Sans" ];
+        serif = lib.optional (!isMobile) "Noto Serif";
+        sansSerif = lib.optional (!isMobile) "Noto Sans";
         monospace = [ "VictorMono" ];
       };
     };
@@ -85,4 +87,12 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
+}
+// lib.mkIf (platform == "mobile") {
+
+  hardware.bluetooth.enable = true;
+  hardware.pulseaudio.package = pkgs.pulseAudioFull;
+  zramSwap.enable = true;
+
+  services.xserver.desktopManager.phosh.user = username;
 }

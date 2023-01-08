@@ -3,7 +3,10 @@ description = "System conf";
 inputs = {
   nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   nur.url = "github:nix-community/NUR";
+
   nixos-hardware.url = "github:NixOS/nixos-hardware";
+  mobile-nixos.url = "github:wentam/mobile-nixos/ppp-pr";
+  mobile-nixos.flake = false;
 
   home-manager.url = "github:nix-community/home-manager/master";
   home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -62,6 +65,29 @@ outputs = { self,
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.sharedModules = [ ./platform.nix { platform = "laptop"; } ];
+            home-manager.extraSpecialArgs = moduleArgs;
+          }
+        ];
+      };
+
+      "${username}-mobile" = lib.makeOverridable lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./config
+
+          { _module.args = moduleArgs;
+            platform = "mobile"; }
+          ./platform.nix
+          ./hardware-configuration/mobile.nix
+          home-manager.nixosModules.home-manager
+          (import ${mobile-nixos}/lib/configuration.nix { device = "pine64-pinephonepro"; })
+          ${mobile-nixos}/examples/phosh/phosh.nix
+          {
+            home-manager.users.${username} = import ./mobile/home-manager.nix;
+
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.sharedModules = [ ./platform.nix { platform = "mobile"; } ];
             home-manager.extraSpecialArgs = moduleArgs;
           }
         ];
