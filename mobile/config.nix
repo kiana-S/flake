@@ -15,6 +15,6 @@
       autoLogin.enable = true;
       autoLogin.user = username;
       defaultSession = "swmo";
-    }
+    };
   };
 }
