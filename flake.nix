@@ -85,8 +85,7 @@ outputs = { self,
           ./hardware-configuration/mobile.nix
           home-manager.nixosModules.home-manager
           (import (mobile-nixos + /lib/configuration.nix) { device = "pine64-pinephonepro"; })
-          (sxmo + modules/sxmo/sxmo.nix)
-          (sxmo + modules/tinydm)
+          (sxmo + /modules/sxmo) (sxmo + /modules/tinydm)
           {
             home-manager.users.${username} = import ./mobile/home-manager.nix;
 
