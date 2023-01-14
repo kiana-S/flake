@@ -1,5 +1,20 @@
 {
   "nodes": {
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1667395993,
+        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -20,6 +35,22 @@
         "ref": "master",
         "repo": "home-manager",
         "type": "github"
+      }
+    },
+    "mnc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1630107213,
+        "narHash": "sha256-S7MBIxuYI+cc8OMQULt7VS7ouPqhq0Jk+rz6E5GyKac=",
+        "owner": "~anjan",
+        "repo": "mnc",
+        "rev": "3c887e23f9c659a57b588f09efb1d1ca1ea79324",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~anjan",
+        "repo": "mnc",
+        "type": "sourcehut"
       }
     },
     "mobile-nixos": {
@@ -81,18 +112,109 @@
       }
     },
     "sxmo": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "mnc": "mnc",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "sxmo-dmenu": "sxmo-dmenu",
+        "sxmo-dwm": "sxmo-dwm",
+        "sxmo-st": "sxmo-st",
+        "sxmo-surf": "sxmo-surf",
+        "sxmo-utils": "sxmo-utils"
+      },
+      "locked": {
+        "lastModified": 1673672934,
+        "narHash": "sha256-UcHnX5BG+An49ZziNhhmLXQEfRunPtgyyG85IgI0gVU=",
+        "owner": "kiana-S",
+        "repo": "nixos-sxmo",
+        "rev": "c7c3c272ff87588f5f94191181f4da0f648a7d76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kiana-S",
+        "repo": "nixos-sxmo",
+        "type": "github"
+      }
+    },
+    "sxmo-dmenu": {
       "flake": false,
       "locked": {
-        "lastModified": 1621623139,
-        "narHash": "sha256-oVJGvVDxOc+JzyKu+7L03E3oAjZlI2Aya7YNvBNfkvg=",
-        "owner": "~noneucat",
-        "repo": "nur-packages",
-        "rev": "3211ca63ce22fe86dd1462cc550fd6605614b246",
+        "lastModified": 1646057610,
+        "narHash": "sha256-r5E1XhefEvUKRpMVGp/77ewzUHNTc6CuiFtQwjh4CWk=",
+        "owner": "~mil",
+        "repo": "sxmo-dmenu",
+        "rev": "623f3c85268d243f3bcd618ad041a501dd2ce9bd",
         "type": "sourcehut"
       },
       "original": {
-        "owner": "~noneucat",
-        "repo": "nur-packages",
+        "owner": "~mil",
+        "repo": "sxmo-dmenu",
+        "type": "sourcehut"
+      }
+    },
+    "sxmo-dwm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1650350309,
+        "narHash": "sha256-/q4QdXWDlNkhsLudAehAxofDs7BCMRAPna0S9gDZjZs=",
+        "owner": "~mil",
+        "repo": "sxmo-dwm",
+        "rev": "c81feda618396ac61f2e1462999053797f58fc05",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~mil",
+        "repo": "sxmo-dwm",
+        "type": "sourcehut"
+      }
+    },
+    "sxmo-st": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1627649866,
+        "narHash": "sha256-yqm1/hZq+ekAfyplmOm4wcf4QEs1/RXXhYa4fgMGhNo=",
+        "owner": "~mil",
+        "repo": "sxmo-st",
+        "rev": "853f4112a9c1ed0f2c5273c91c20750529b8a75f",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~mil",
+        "repo": "sxmo-st",
+        "type": "sourcehut"
+      }
+    },
+    "sxmo-surf": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1609378244,
+        "narHash": "sha256-Eq12GiHOgeAfUVfVYX7yVDdKXA9yOETtDU3ewO+1dOA=",
+        "owner": "~mil",
+        "repo": "sxmo-surf",
+        "rev": "aa1335528a95bee671efc803e14b432fcf74e746",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~mil",
+        "repo": "sxmo-surf",
+        "type": "sourcehut"
+      }
+    },
+    "sxmo-utils": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1673266310,
+        "narHash": "sha256-xBE5MB7zUK6AsjkOgSfIuQLhu1j17UbadW9w3ODKmu8=",
+        "owner": "~mil",
+        "repo": "sxmo-utils",
+        "rev": "ad5102f6e15f752a425a16e11ff44e9e28e73e63",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~mil",
+        "repo": "sxmo-utils",
         "type": "sourcehut"
       }
     },
