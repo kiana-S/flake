@@ -7,8 +7,8 @@ inputs = {
   mobile-nixos.url = "github:wentam/mobile-nixos/ppp-pr";
   mobile-nixos.flake = false;
 
-  sxmo.url = "github:kiana-S/nixos-sxmo";
-  sxmo.inputs.nixpkgs.follows = "nixpkgs";
+  sxmo.url = "github:wentam/sxmo-nix";
+  sxmo.flake = false;
 
   home-manager.url = "github:nix-community/home-manager/master";
   home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -85,7 +85,8 @@ outputs = { self,
           ./hardware-configuration/mobile.nix
           home-manager.nixosModules.home-manager
           (import (mobile-nixos + /lib/configuration.nix) { device = "pine64-pinephonepro"; })
-          sxmo.nixosModules.sxmo
+          (sxmo + modules/sxmo/sxmo.nix)
+          (sxmo + modules/tinydm)
           {
             home-manager.users.${username} = import ./mobile/home-manager.nix;
 
