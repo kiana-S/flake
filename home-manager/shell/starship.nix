@@ -27,8 +27,8 @@
     };
 
     nix_shell = {
-      format = "[$symbol]($style)";
-      symbol = "❄️  ";
+      format = "[$symbol \\($state\\) ]($style)";
+      symbol = "❄️";
     };
 
     jobs = {
@@ -39,7 +39,10 @@
 
     status = {
       disabled = false;
+      pipestatus = true;
       format = "[\\($int\\)]($style) ";
+      pipestatus_segment_format = "$int";
+      pipestatus_format = "[\\($pipestatus\\)]($style) ";
     };
 
     time = {
@@ -48,21 +51,21 @@
       style = "dimmed cyan";
     };
 
-    git_branch.style = "bold green";
+    git_branch.style = "bold bright-green";
 
     git_status = {
       format = "$stashed$ahead_behind$conflicted$deleted$renamed$staged$modified$untracked";
 
-      conflicted = "[~$count ](red)";
-      ahead = "[⇡$count ](cyan)";
-      behind = "[⇣$count ](cyan)";
-      diverged = "[⇕ ](cyan)";
-      untracked = "[?$count ](cyan)";
-      stashed = "[\\$$count ](cyan)";
+      conflicted = "[~$count ](bright-red)";
+      ahead = "[⇡$count ](bright-cyan)";
+      behind = "[⇣$count ](bright-cyan)";
+      diverged = "[⇕ ](bright-cyan)";
+      untracked = "[?$count ](bright-cyan)";
+      stashed = "[\\$$count ](bright-cyan)";
       modified = "[!$count ](yellow)";
       staged = "[+$count ](yellow)";
       renamed = "[»$count ](yellow)";
-      deleted = "[✘$count ](red)";
+      deleted = "[✘$count ](bright-red)";
     };
   };
 }
