@@ -1,7 +1,27 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nixpkgs, ... }:
 let
   # nix-direnv with flake support
   nix-direnv-with-flakes = pkgs.nix-direnv.override { enableFlakes = true; };
+
+  emacs29 = pkgs.callPackage (import "${nixpkgs}/pkgs/applications/editors/emacs/generic.nix" {
+    version = "29.0.90";
+    sha256 = "sha256-5aR+9EZF9Md2nb4n3xktFR5j8cZto7mZaYUXZpQbvNI=";
+  }) {
+      withPgtk = true;
+      withWebP = true;
+      withSQLite3 = true;
+
+      # Copied from nixpkgs
+      libXaw = pkgs.xorg.libXaw;
+      gconf = null;
+      alsa-lib = null;
+      acl = null;
+      gpm = null;
+      inherit (pkgs.darwin.apple_sdk.frameworks)
+        AppKit Carbon Cocoa IOKit OSAKit Quartz QuartzCore WebKit
+        ImageCaptureCore GSS ImageIO;
+      inherit (pkgs.darwin) sigtool;
+    };
 in {
   environment.systemPackages = with pkgs; [
     ffmpeg
@@ -36,7 +56,7 @@ in {
 
 
   services.emacs.enable = true;
-  services.emacs.package = pkgs.emacs28-gtk;
+  services.emacs.package = emacs29;
 
   # direnv setup
 
