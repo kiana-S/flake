@@ -8,11 +8,12 @@ let
         "$6$HYibiGhDN.JgLtw6$cecU7NjfumTUJSkFNFQG4uVgdd3tTPLGxK0zHAwYn3un/V43IUlyVBNKoRMLCQk65RckbD/.AjsLFVFKUUHVA/"
       else if platform == "laptop" then
         "$6$y3eb1phxFWnParRT$w1LNfxJ2ByHoiBa5ywh4STGuIK/r4Tnyxx2Xe/nlovrE6LuuLAVdKRFAroUTtUI/d2BNGI9ErjZ2z2Dl7w/t00"
-      else
+      else # if platform == "mobile"
         "$6$vmmMT7pEY1W0Bj9R$Kb6nuwdg/KzCrGcUPkEo2jJ6a2NJRikiOeN8/I8ObU1K6rVYvgYqPVgPg9NkLaUScdh1PWcabuvaHCFLMw14A0";
 in
 {
   nix.package = pkgs.nixFlakes;
+  nix.settings.auto-optimise-store = true;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
     restrict-eval = false
@@ -62,6 +63,7 @@ in
       font-awesome
       victor-mono
       ubuntu_font_family
+      source-sans-pro
     ];
 
     fontconfig = {
