@@ -24,15 +24,16 @@
     "mobile-nixos": {
       "flake": false,
       "locked": {
-        "lastModified": 1684164963,
-        "narHash": "sha256-tRnlR7d2EaJgIW7s6WBQCYEnRY7bby8+JypKhCs1veI=",
+        "lastModified": 1684167027,
+        "narHash": "sha256-XmlNaVgv2RFD9wNxVubnIkPAlu1gNta0z1YRq+SJIOk=",
         "owner": "kiana-S",
         "repo": "mobile-nixos",
-        "rev": "5be64ad51a0a451c8d18cc5635246dc3c5bf2399",
+        "rev": "662a4cb79c08699fca1c2af8af1cce3c16589fd8",
         "type": "github"
       },
       "original": {
         "owner": "kiana-S",
+        "ref": "ppp-pr",
         "repo": "mobile-nixos",
         "type": "github"
       }

@@ -4,7 +4,7 @@ inputs = {
   nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   nixos-hardware.url = "github:NixOS/nixos-hardware";
-  mobile-nixos.url = "github:kiana-S/mobile-nixos";
+  mobile-nixos.url = "github:kiana-S/mobile-nixos/ppp-pr";
   mobile-nixos.flake = false;
 
   sxmo.url = "github:wentam/sxmo-nix";
