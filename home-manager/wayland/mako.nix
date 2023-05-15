@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  programs.mako = {
+  services.mako = {
     enable = true;
 
     font = "UbuntuMono Light 11";

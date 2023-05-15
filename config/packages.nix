@@ -27,6 +27,7 @@ in {
     nix-direnv-with-flakes
   ];
 
+  programs.fish.enable = true;
   programs.sway.enable = true;
   programs.sway.extraPackages = [];
 

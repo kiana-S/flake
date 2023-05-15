@@ -30,7 +30,7 @@ outputs = { self,
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
-      "${username}-desktop" = lib.makeOverridable lib.nixosSystem {
+      "${username}-desktop" = lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./config
@@ -51,7 +51,7 @@ outputs = { self,
         ]; 
       };
 
-      "${username}-laptop" = lib.makeOverridable lib.nixosSystem {
+      "${username}-laptop" = lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./config
@@ -61,7 +61,7 @@ outputs = { self,
           ./platform.nix
           ./hardware-configuration/laptop.nix
           home-manager.nixosModules.home-manager
-          nixos-hardware.nixosModules.microsoft-surface
+          nixos-hardware.nixosModules.microsoft-surface-pro-intel
           {
             home-manager.users.${username} = import ./home-manager;
 
@@ -73,7 +73,7 @@ outputs = { self,
         ];
       };
 
-      "${username}-mobile" = lib.makeOverridable lib.nixosSystem {
+      "${username}-mobile" = lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           ./config
