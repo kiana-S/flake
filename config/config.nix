@@ -60,7 +60,7 @@ in
       noto-fonts-cjk
       noto-fonts-emoji
       (nerdfonts.override { fonts = [ "UbuntuMono" "JetBrainsMono" ]; })
-      font-awesome
+      emacs-all-the-icons-fonts
       victor-mono
       ubuntu_font_family
       source-sans-pro
