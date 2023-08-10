@@ -37,9 +37,9 @@
             };
 
             format-icons = {
+              browser = "${spanfa}<small> </small></span>";
               terminal = "${spanfa}</span>";
               code = "${spanfa}</span>";
-              browser = "${spanfa}<big></big></span>";
               files = "${spanfa}</span>";
               discord = "${spanfa}</span>";
               settings = "${spanfa}</span>";
@@ -81,7 +81,7 @@
             format-alt = " {:%Y-%m-%d}";
           };
           "cpu" = {
-            format = "<span font=\"Font Awesome 5 Regular 13\"></span> <span rise=\"1pt\">{usage}%</span>";
+            format = "<big> </big>{usage}%";
             tooltip = false;
           };
           "battery" = {
@@ -89,9 +89,9 @@
             states.low = 15;
             states.critical = 5;
 
-            format-icons = [ "" "" "" "" "" "" "" "" "" "" "" ];
-            format = "<span font=\"UbuntuMono Nerd Font 12\">{icon}</span> {capacity}%";
-            format-charging = "<span font=\"UbuntuMono Nerd Font 12\"> </span>{capacity}%";
+            format = "<big>{icon}</big> {capacity}%";
+            format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰁿" "󰂁" "󰂂" "󰁹" ];
+            format-charging = "󰂄 {capacity}%";
             format-time = "{H}h {M}m";
           };
           "memory" = {
@@ -106,8 +106,8 @@
           };
           "backlight" = {
             # device = "acpi_video1";
-            format = "<span font=\"Font Awesome 5 Regular 12\"><big>{icon}</big></span><small> </small><span rise=\"2pt\">{percent}%</span>";
-            format-icons = [ "" "" "" "" ];
+            format = "<span size=\"12pt\" rise=\"-0.5pt\">{icon}</span><span size=\"13pt\"> </span>{percent}%";
+            format-icons = [ "󰃚" "󰃞" "󰃟" "󰃝" "󰃠" ];
           };
           "network" = {
             # interface = "wlp2*"; # (Optional) To force the use of this interface
