@@ -11,6 +11,7 @@ let
 in {
   environment.systemPackages = with pkgs; [
     ffmpeg
+    openssl
     jq 
     git
     wget
