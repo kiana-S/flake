@@ -6,6 +6,7 @@ in {
   home.packages = with pkgs; [
     swayidle
     wl-clipboard
+    wtype
     wlroots
     grim
     slurp
