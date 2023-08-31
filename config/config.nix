@@ -56,13 +56,13 @@ in
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
+      victor-mono
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      (nerdfonts.override { fonts = [ "UbuntuMono" "JetBrainsMono" ]; })
+      (nerdfonts.override { fonts = [ "UbuntuMono" "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
       font-awesome
       emacs-all-the-icons-fonts
-      victor-mono
       ubuntu_font_family
       source-sans-pro
     ];
