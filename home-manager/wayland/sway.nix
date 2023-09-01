@@ -92,7 +92,7 @@ in {
           "${modifier}+Shift+m" = "exec swaylock";
 
           # Emacs Everywhere
-          "${modifier}+Mod1+e" = "emacsclient --eval '(emacs-everywhere)'";
+          "${modifier}+q" = "exec ~/.emacs.d/bin/doom +everywhere";
 
           # Screenshot
           "Print"             = ''exec grim ${filename}'';
