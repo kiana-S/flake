@@ -9,5 +9,8 @@
 
   # Hook nix-direnv to shell
 
-  programs.fish.shellInit = "direnv hook fish | source";
+  programs.fish.shellInit = ''
+    set -xg DIRENV_LOG_FORMAT ""
+    direnv hook fish | source
+  '';
 }
