@@ -35,9 +35,9 @@
         let family = "VictorMono";
             font-style = style: { inherit family style; };
         in {
-          normal      = font-style "SemiBold";
+          normal      = font-style "Regular";
           bold        = font-style "Bold";
-          italic      = font-style "SemiBold Italic";
+          italic      = font-style "Italic";
           bold_italic = font-style "Bold Italic";
  
           size = 11;

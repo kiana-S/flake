@@ -5,8 +5,6 @@
   xdg.configFile."swaylock/config".text =
     ''
       ignore-empty-password
-      grace-no-mouse
-
       fade-in=0.3
 
       indicator
@@ -14,16 +12,13 @@
 
       font=JetBrainsMono
       text-color=ffffff
-
       color=00000000
       ring-color=7da6ff
       key-hl-color=7bc5e4
 
       line-uses-inside
-
       indicator-radius=120
       indicator-thickness=7
-
 
       clock
       datestr=%a, %Y-%m-%d

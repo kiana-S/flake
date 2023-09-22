@@ -24,6 +24,8 @@
       truncation_symbol = "⋯ /";
       read_only = "  ";
       read_only_style = "cyan";
+      before_repo_root_style = "bold blue";
+      repo_root_style = "bold blue";
     };
 
     nix_shell = {
