@@ -8,6 +8,7 @@
   imports = [
     ./sway.nix
     ./swaylock.nix
+    ./swaynag.nix
     ./mako.nix
     ./rofi.nix
     ./waybar.nix

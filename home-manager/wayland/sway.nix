@@ -114,9 +114,8 @@ in {
           "XF86AudioPrev"              = playerctl "previous";
 
           # Exit
-          "${modifier}+Shift+e" = ''exec swaynag -t warning -m \
-            "You pressed the exit shortcut. Do you really want to exit sway? \
-            This will end your Wayland session." -b "Yes, exit sway" "swaymsg exit" '';
+          "${modifier}+Shift+e" = ''exec swaynag -t exit -m "Do you really want to exit?" \
+            -B "Reboot" "reboot" -B "Shutdown" "poweroff" -b "Exit" "swaymsg exit"'';
 
           # Workspaces
           "${modifier}+1" = "workspace 10:browser";
