@@ -11,4 +11,8 @@ lib.mkIf (config.platform == "laptop") {
   # Power and temperature management tools
   services.thermald.enable = true;
   services.tlp.enable = true;
+  services.tlp.settings = {
+    TLP_DEFAULT_MODE = "BAT";
+    TLP_PERSISTENT_DEFAULT = 1;
+  };
 }
