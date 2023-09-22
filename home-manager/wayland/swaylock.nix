@@ -12,7 +12,7 @@
       indicator
       screenshots
 
-      font=UbuntuMono
+      font=JetBrainsMono
       text-color=ffffff
 
       color=00000000
@@ -26,7 +26,7 @@
 
 
       clock
-      datestr=%A, %Y-%m-%d
+      datestr=%a, %Y-%m-%d
 
       effect-scale=0.4
       effect-vignette=0.3:0.7

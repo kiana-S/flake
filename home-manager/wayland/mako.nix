@@ -3,7 +3,7 @@
   services.mako = {
     enable = true;
 
-    font = "UbuntuMono Light 11";
+    font = "JetBrainsMono Nerd Font 10";
     format = ''<i>%a</i>\n<b>%s</b>\n\n%b'';
     layer = "overlay";
     backgroundColor = "#111320d0";

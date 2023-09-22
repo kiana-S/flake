@@ -60,10 +60,10 @@ in
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      (nerdfonts.override { fonts = [ "UbuntuMono" "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
+      jetbrains-mono
+      (nerdfonts.override { fonts = [ "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
       font-awesome
       emacs-all-the-icons-fonts
-      ubuntu_font_family
       source-sans-pro
     ];
 
