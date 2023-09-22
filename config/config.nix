@@ -28,6 +28,14 @@ in
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
 
+  # Power button settings
+  services.logind = {
+    extraConfig = ''
+        HandlePowerKey=ignore
+        HandlePowerKeyLongPress=poweroff
+      '';
+  };
+
   # Set your time zone.
   time.timeZone = "America/New_York";
 
