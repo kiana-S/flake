@@ -114,7 +114,7 @@ in {
           "XF86AudioPrev"              = playerctl "previous";
 
           # Exit
-          "${modifier}+Shift+e" = ''pkill -0 swaynag || \
+          "${modifier}+Shift+e" = ''exec pkill -0 swaynag || \
             swaynag -t exit -m "Do you really want to exit?" \
             -B "Reboot" "reboot" -B "Shutdown" "poweroff" -b "Exit" "swaymsg exit"'';
 
