@@ -114,7 +114,8 @@ in {
           "XF86AudioPrev"              = playerctl "previous";
 
           # Exit
-          "${modifier}+Shift+e" = ''exec swaynag -t exit -m "Do you really want to exit?" \
+          "${modifier}+Shift+e" = ''pkill -0 swaynag || \
+            swaynag -t exit -m "Do you really want to exit?" \
             -B "Reboot" "reboot" -B "Shutdown" "poweroff" -b "Exit" "swaymsg exit"'';
 
           # Workspaces
@@ -132,9 +133,7 @@ in {
           "${modifier}+Shift+6" = "move container to workspace 60:settings";
       };
 
-       output."*" = {
-         bg = "${../../assets/background.png} fill";
-       };
+       output."*".bg = "${../../assets/background.png} fill";
     };
   };
 }

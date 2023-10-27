@@ -4,6 +4,7 @@
     ''
       font=JetBrainsMono 10
       layer=top
+      edge=bottom
 
       [exit]
       background=111320D0
