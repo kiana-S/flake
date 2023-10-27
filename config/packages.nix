@@ -26,6 +26,7 @@ in {
     pandoc
     gnuplot
     graphviz
+    texlive.combined.scheme-full
     (aspellWithDicts (ps: with ps; [ en en-computers en-science ]))
 
     gcc
