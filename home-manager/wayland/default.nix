@@ -7,11 +7,7 @@
 
   imports = [
     ./sway.nix
-    ./swaylock.nix
-    ./swaynag.nix
-    ./mako.nix
-    ./rofi.nix
+    ./swaytools.nix
     ./waybar.nix
-    ./wob.nix
   ];
 }
