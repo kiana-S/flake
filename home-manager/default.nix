@@ -15,13 +15,25 @@
     userName = fullname;
     userEmail = "kiana.a.sheibani@gmail.com";
 
+    signing.key = "6CB106C25E86A9F7";
+    signing.signByDefault = true;
+
     extraConfig = {
       credential.helper = "store";
       git.allowForcePush = true;
+      push.followTags = true;
       init.defaultBranch = "main";
+    };
 
-      user.signingkey = "6CB106C25E86A9F7";
-      commit.gpgsign = true;
+    delta.enable = true;
+    delta.options = {
+      features = "decorations";
+      relative-paths = true;
+
+      decorations = {
+        file-style = "yellow";
+        hunk-header-style = "line-number syntax";
+      };
     };
   };
 
