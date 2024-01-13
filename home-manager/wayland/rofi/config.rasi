@@ -13,6 +13,16 @@ configuration {
   display-run: "   Run ";
   display-workspace: "   Workspace ";
   display-workspacemove: "   Move to Workspace ";
+
+  // Bindings
+  kb-remove-to-eol: "";
+  kb-mode-complete: "";
+  kb-remove-char-back: "BackSpace,Shift+BackSpace";
+  kb-accept-entry: "Control+m,Return,KP_Enter";
+  kb-element-next: "Tab,Control+j";
+  kb-element-prev: "ISO_Left_Tab,Control+k";
+  kb-row-left: "Control+Page_Up,Control+h";
+  kb-row-right: "Control+Page_Down,Control+l";
 }
 
 @theme "tokyonight"
