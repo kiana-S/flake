@@ -1,11 +1,5 @@
 { config, pkgs, ... }:
-let
-  emacs29 = pkgs.emacs29.override {
-      withPgtk = true;
-      withWebP = true;
-      withSQLite3 = true;
-  };
-in {
+{
   environment.systemPackages = with pkgs; [
     ffmpeg
     openssl
@@ -34,7 +28,11 @@ in {
   programs.sway.extraPackages = [];
 
   services.emacs.enable = true;
-  services.emacs.package = emacs29;
+  services.emacs.package = pkgs.emacs29.override {
+      withPgtk = true;
+      withWebP = true;
+      withSQLite3 = true;
+  };
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
