@@ -33,10 +33,6 @@ in {
   programs.sway.enable = true;
   programs.sway.extraPackages = [];
 
-  # Necessary for VSCodium to store passwords
-  services.gnome.gnome-keyring.enable = true;
-
-
   services.emacs.enable = true;
   services.emacs.package = emacs29;
 
