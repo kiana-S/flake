@@ -1,8 +1,5 @@
-{ config, pkgs, nixpkgs, ... }:
+{ config, pkgs, ... }:
 let
-  # nix-direnv with flake support
-  nix-direnv-with-flakes = pkgs.nix-direnv.override { enableFlakes = true; };
-
   emacs29 = pkgs.emacs29.override {
       withPgtk = true;
       withWebP = true;
@@ -30,9 +27,6 @@ in {
     (aspellWithDicts (ps: with ps; [ en en-computers en-science ]))
 
     gcc
-
-    direnv
-    nix-direnv-with-flakes
   ];
 
   programs.fish.enable = true;
@@ -46,12 +40,12 @@ in {
   services.emacs.enable = true;
   services.emacs.package = emacs29;
 
-  # direnv setup
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
+  programs.direnv.silent = true;
 
   nix.extraOptions = ''
     keep-derivations = true
     keep-outputs = true
   '';
-
-  environment.pathsToLink = [ "/share/nix-direnv" ];
 }
