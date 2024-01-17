@@ -15,10 +15,11 @@ in
   nix.package = pkgs.nixFlakes;
   nix.settings.auto-optimise-store = true;
   nix.extraOptions = ''
-    experimental-features = nix-command flakes
+    experimental-features = nix-command flakes ca-derivations
     restrict-eval = false
   '';
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.contentAddressedByDefault = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = !isMobile;
