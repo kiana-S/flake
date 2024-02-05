@@ -1,14 +1,8 @@
 { pkgs, config, ... }:
 {
-  home.packages = with pkgs; [ swaylock-effects wob ];
+  home.packages = [ pkgs.swaylock-effects ];
 
   xdg.configFile = {
-    "wob/volume.ini".text = "";
-    "wob/brightness.ini".text = ''
-      border_color = FFFF00FF
-      bar_color = FFFF00FF
-    '';
-
     "swaylock/config".text = ''
       ignore-empty-password
       fade-in=0.3
@@ -70,7 +64,7 @@
     borderSize = 2;
     borderColor = "#7bc5e4";
     borderRadius = 5;
-    defaultTimeout = 10000;
+    progressColor = "source #4e90ad";
 
     extraConfig =
       ''
@@ -78,14 +72,17 @@
         format=<i>%s</i>\n%b
         background-color=#111111c0
         border-color=#787c99
+        progress-color=source #474f6f
         border-size=1
 
         [urgency=high]
         background-color=#1e0909d0
         border-color=#ce7284
+        progress-color=source #bc5469
         border-size=3
         default-timeout=0
         ignore-timeout=1
+
 
         [app-name=discord]
         format=<b>%s</b>\n\n%b
@@ -94,6 +91,25 @@
         [app-name=discordcanary]
         format=<b>%s</b>\n\n%b
         border-color=#7da6ff
+
+
+        [category=multimedia]
+        anchor=center
+        width=430
+        font=JetBrainsMono Nerd Font 13
+        format=<i>%s</i>
+        border-size=1
+        default-timeout=2000
+
+        [app-name=pamixer]
+        background-color=#111111c0
+        border-color=#787c99
+        progress-color=source #474f6f
+
+        [app-name=brightnessctl]
+        background-color=#111111c0
+        border-color=#ffea63
+        progress-color=source #a08348
       '';
   };
 }
