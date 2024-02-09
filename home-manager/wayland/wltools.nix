@@ -1,6 +1,14 @@
 { pkgs, config, ... }:
 {
-  home.packages = [ pkgs.swaylock-effects ];
+  home.packages = with pkgs; [
+    swaylock-effects
+    wl-clipboard
+    wtype
+    wlroots
+    grim
+    slurp
+    imv
+  ];
 
   xdg.configFile = {
     "swaylock/config".text = ''

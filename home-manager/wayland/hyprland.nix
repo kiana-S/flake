@@ -7,13 +7,9 @@ in {
   home.packages = with pkgs; [
     swaybg
     swayidle
-    wl-clipboard
-    wtype
-    wlroots
-    grim
-    slurp
-    imv
   ];
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  xdg.portal.config.hyprland.default = [ "hyprland" "gtk" ];
 
   wayland.windowManager.hyprland = {
     enable = true;
