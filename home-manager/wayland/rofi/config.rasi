@@ -1,6 +1,6 @@
 configuration {
   cycle: false;
-  modi: "drun,run,workspace:~/.config/rofi/workspace.sh,workspacemove:~/.config/rofi/workspacemove.sh";
+  modi: "drun";
   font: "JetBrainsMono Nerd Font 14";
   location: 0;
   terminal: "alacritty";
@@ -10,9 +10,6 @@ configuration {
 
   drun-display-format: "{name}";
   display-drun: "   Apps ";
-  display-run: "   Run ";
-  display-workspace: "   Workspace ";
-  display-workspacemove: "   Move to Workspace ";
 
   // Bindings
   kb-remove-to-eol: "";

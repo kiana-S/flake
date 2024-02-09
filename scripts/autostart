@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+swaybg -o '*' -i "$1" -m fill &
+
+waybar &
+
+swayidle timeout 120 'swaylock -f --grace=180' \
+  timeout 600 'systemctl suspend' \
+  before-sleep 'swaylock -f' &

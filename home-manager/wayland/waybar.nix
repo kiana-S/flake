@@ -10,8 +10,9 @@
         margin = "8 8 0";
 
 
-        modules-left = [ "sway/workspaces" "sway/mode" "custom/sep" "cpu" "memory" "temperature" ];
-        modules-center = [ "sway/window" ];
+        modules-left = [ "hyprland/workspaces" "custom/sep" "cpu" "memory" "temperature" ];
+
+        modules-center = [ "hyprland/window" ];
 
         modules-right =
           if config.platform == "laptop" then
@@ -21,33 +22,6 @@
 
 
         modules = {
-          "sway/workspaces" = {
-            disable-scroll = true;
-            all-outputs = true;
-            numeric-first = true;
-            format = "<big>{icon}</big>";
-
-            persistent_workspaces = {
-              "10:browser" = [];
-              "20:terminal" = [];
-              "30:code" = [];
-              "40:files" = [];
-              "50:discord" = [];
-              "60:settings" = [];
-            };
-
-            format-icons = {
-              browser = "${spanfa}<small> </small></span>";
-              terminal = "${spanfa}</span>";
-              code = "${spanfa}</span>";
-              files = "${spanfa}</span>";
-              discord = "${spanfa}</span>";
-              settings = "${spanfa}</span>";
-            };
-          };
-          "sway/mode" = {
-            format = "<span style=\"italic\">{}</span>";
-          };
           "mpd" = {
             format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ ";
             format-disconnected = "Disconnected ";
@@ -200,16 +174,12 @@
             background: @background;
             border: none;
             padding: 0px 3px;
+            text-shadow: 0px 0px 2px shade(@blue, 1.1);
         }
 
-        #workspaces button.persistent {color: @empty;}
-        #workspaces button.focused {
+        #workspaces button.active {
           color: shade(@pink, 1.1);
           text-shadow: 0px 0px 2px shade(@pink, 1.2);
-        }
-        #workspaces button.urgent {
-            background-color: @altred;
-            color: #ffffff;
         }
 
         #clock,

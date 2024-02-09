@@ -6,8 +6,8 @@
   };
 
   imports = [
-    ./sway.nix
-    ./swaytools.nix
+    ./hyprland.nix
+    ./wltools.nix
     ./waybar.nix
   ];
 }

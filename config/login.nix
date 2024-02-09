@@ -22,7 +22,7 @@ lib.mkIf (config.platform != "mobile")
     services.xserver = {
       enable = true;
 
-      displayManager.defaultSession = "sway";
+      displayManager.defaultSession = "hyprland";
       displayManager.sddm = {
         enable = true;
         theme = "tokyo-night-sddm";
