@@ -54,9 +54,8 @@ in {
       animations = {
         bezier = [ "overshot, 0.13, 0.99, 0.29, 1.1" ];
         animation = [
+          "windows, 1, 2, default, popin 70%"
           "windowsMove, 1, 4, overshot, slide"
-          "windowsIn, 1, 2, default, popin 70%"
-          "windowsOut, 1, 2, default, popin 70%"
           "border, 1, 8, default,"
           "fade, 1, 8, default,"
           "workspaces, 1, 4, overshot, slide"
