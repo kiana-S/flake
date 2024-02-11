@@ -7,6 +7,11 @@
 
   programs.fish.enable = true;
 
+  programs.eza = {
+    enable = true;
+    enableAliases = true;
+  };
+
   # rlwrap config
 
   programs.fish.shellInit = ''
