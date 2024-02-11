@@ -51,6 +51,10 @@ in {
         font_size = 14;
       };
 
+      layerrule = [
+        "noanim, ^(notifications)$"
+      ];
+
       animations = {
         bezier = [ "overshot, 0.13, 0.99, 0.29, 1.1" ];
         animation = [
