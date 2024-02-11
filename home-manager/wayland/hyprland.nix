@@ -56,13 +56,13 @@ in {
       ];
 
       animations = {
-        bezier = [ "overshot, 0.13, 0.99, 0.29, 1.1" ];
+        bezier = [ "overshot, 0.13, 0.99, 0.29, 1.06" ];
         animation = [
           "windows, 1, 2, default, popin 70%"
           "windowsMove, 1, 4, overshot, slide"
           "border, 1, 8, default,"
           "fade, 1, 8, default,"
-          "workspaces, 1, 4, overshot, slide"
+          "workspaces, 1, 5, overshot, slidevert"
         ];
       };
 

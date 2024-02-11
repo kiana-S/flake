@@ -6,9 +6,9 @@
     settings =
       let spanfa = "<span font=\"Font Awesome 5 Regular 11\">";
       in [{
+        layer = "top";
         height = 32;
         margin = "8 8 0";
-
 
         modules-left = [ "hyprland/workspaces" "custom/sep" "cpu" "memory" "temperature" ];
 
