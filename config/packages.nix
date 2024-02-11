@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     ffmpeg
     openssl
-    jq 
+    jaq
     git
     wget
     libnotify

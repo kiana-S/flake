@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 notify-send "$1" -c multimedia -a "$2" \
-  $(makoctl list | jq -r 'first(.data[][]|select(.category.data=="multimedia")|.id.data|["-r",.])[]') \
+  $(makoctl list | jaq -r 'first(.data[][]|select(.category.data=="multimedia")|.id.data|["-r",.])[]') \
   -h "INT:value:$3"
