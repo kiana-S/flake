@@ -26,7 +26,9 @@ outputs = { self,
   let
     username = "kiana";
     fullname = "Kiana Sheibani";
-    moduleArgs = { inherit username fullname; } // inputs;
+    email = "kiana.a.sheibani@gmail.com";
+
+    moduleArgs = { inherit username fullname email; } // inputs;
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {

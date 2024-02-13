@@ -1,11 +1,11 @@
-{ config, pkgs, username, fullname, ... }:
+{ config, pkgs, username, fullname, email, ... }:
 {
   home.username = username;
   home.homeDirectory = "/home/" + username;
 
   home.stateVersion = "21.11";
 
-  imports = [ ./shell ./wayland ];
+  imports = [ ./shell ./wayland ./email.nix ];
 
   xdg.enable = true;
   xdg.userDirs.enable = true;
@@ -13,7 +13,7 @@
   programs.git = {
     enable = true;
     userName = fullname;
-    userEmail = "kiana.a.sheibani@gmail.com";
+    userEmail = email;
 
     signing.key = "6CB106C25E86A9F7";
     signing.signByDefault = true;
