@@ -109,12 +109,12 @@
         border-size=1
         default-timeout=2000
 
-        [app-name=pamixer]
+        [category=multimedia app-name=pamixer]
         background-color=#111111c0
         border-color=#787c99
         progress-color=source #474f6f
 
-        [app-name=brightnessctl]
+        [category=multimedia app-name=brightnessctl]
         background-color=#111111c0
         border-color=#ffea63
         progress-color=source #a08348
