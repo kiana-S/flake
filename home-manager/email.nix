@@ -1,14 +1,16 @@
-{ pkgs, fullname, email, ... }:
+{ config, pkgs, fullname, email, ... }:
 let
-  maildir = "/home/kiana/.mail";
+  maildir = "${config.xdg.dataHome}/mail";
+  pass = config.programs.password-store.package;
 in {
   accounts.email = {
     maildirBasePath = maildir;
     accounts = {
-      Gmail = {
+      gmail = {
         address = email;
         userName = email;
         flavor = "gmail.com";
+        passwordCommand = "${pass}/bin/pass Email/gmail.com";
         primary = true;
         mbsync = {
           enable = true;

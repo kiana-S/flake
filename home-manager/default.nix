@@ -5,7 +5,7 @@
 
   home.stateVersion = "21.11";
 
-  imports = [ ./shell ./wayland ./email.nix ];
+  imports = [ ./shell ./wayland ./password.nix ./email.nix ];
 
   xdg.enable = true;
   xdg.userDirs.enable = true;
