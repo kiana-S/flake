@@ -8,6 +8,7 @@ in {
     mbsync.enable = true;
     mu.enable = true;
   };
+  home.packages = [ pkgs.emacsPackages.mu4e ];
 
   accounts.email = {
     maildirBasePath = maildir;
@@ -26,6 +27,7 @@ in {
         };
         realName = fullname;
         msmtp.enable = true;
+        mu.enable = true;
       };
     };
   };
