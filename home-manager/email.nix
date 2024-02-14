@@ -3,6 +3,12 @@ let
   maildir = "${config.xdg.dataHome}/mail";
   pass = config.programs.password-store.package;
 in {
+  programs = {
+    msmtp.enable = true;
+    mbsync.enable = true;
+    mu.enable = true;
+  };
+
   accounts.email = {
     maildirBasePath = maildir;
     accounts = {
@@ -10,7 +16,7 @@ in {
         address = email;
         userName = email;
         flavor = "gmail.com";
-        passwordCommand = "${pass}/bin/pass Email/gmail.com";
+        passwordCommand = "${pass}/bin/pass Email/GmailApp/kiana.a.sheibani@gmail.com";
         primary = true;
         mbsync = {
           enable = true;
@@ -22,11 +28,6 @@ in {
         msmtp.enable = true;
       };
     };
-  };
-
-  programs = {
-    msmtp.enable = true;
-    mbsync.enable = true;
   };
 
   services = {
