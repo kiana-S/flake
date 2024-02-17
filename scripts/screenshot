@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 grim - | wl-copy
 notify-send "Screenshot saved to clipboard" \
-    -a grim -c screenshot -u low
+    -a grim -c screenshot -u low -t 3000

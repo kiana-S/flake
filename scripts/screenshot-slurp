@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
-grim -g "$(slurp)" - | wl-copy
-notify-send "Screenshot saved to clipboard" \
-    -a grim -c screenshot -u low
+if region="$(slurp)"; then
+    grim -g "$region" - | wl-copy
+    notify-send "Screenshot saved to clipboard" \
+        -a grim -c screenshot -u low -t 3000
+else
+    notify-send "Screenshot cancelled" \
+        -a grim -c screenshot -u low -t 3000
+fi
