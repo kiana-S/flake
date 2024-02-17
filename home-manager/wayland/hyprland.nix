@@ -97,6 +97,8 @@ in {
         "$mod Shift, K, movewindow, u"
         "$mod Shift, J, movewindow, d"
 
+        "$mod, F, fullscreen, 1"
+        "$mod Shift, F, fullscreen, 0"
         "$mod Shift, Q, killactive,"
         "$mod, G, togglegroup,"
         "$mod, Tab, changegroupactive, f"
