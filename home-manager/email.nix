@@ -1,5 +1,6 @@
 { config, pkgs, fullname, email, ... }:
 let
+  ksumail = "bsheiban@students.kennesaw.edu";
   maildir = "${config.xdg.dataHome}/mail";
   pass = config.programs.password-store.package;
 in {
@@ -17,8 +18,23 @@ in {
         address = email;
         userName = email;
         flavor = "gmail.com";
-        passwordCommand = "${pass}/bin/pass Email/GmailApp/kiana.a.sheibani@gmail.com";
+        passwordCommand = "${pass}/bin/pass Email/GmailApp/${email}";
         primary = true;
+        mbsync = {
+          enable = true;
+          create = "both";
+          expunge = "both";
+          patterns = [ "*" ];
+        };
+        realName = fullname;
+        msmtp.enable = true;
+        mu.enable = true;
+      };
+      ksu = {
+        address = ksumail;
+        userName = ksumail;
+        flavor = "outlook.office365.com";
+        passwordCommand = "${pass}/bin/pass Email/${ksumail}";
         mbsync = {
           enable = true;
           create = "both";
@@ -35,7 +51,6 @@ in {
   services = {
     mbsync = {
       enable = true;
-      preExec = "${pkgs.isync}/bin/mbsync -Ha";
       postExec = "${pkgs.mu}/bin/mu index -m ${maildir}";
     };
   };
