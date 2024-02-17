@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 pkill -0 swaynag || \
-  swaynag -t exit -m "Do you really want to exit?" \
-  -B "Reboot" "reboot" -B "Shutdown" "poweroff" -b "Exit" "hyprctl dispatch exit"
+    swaynag -t exit -m "Do you really want to exit?" \
+    -B "Reboot" "reboot" -B "Shutdown" "poweroff" -b "Exit" "hyprctl dispatch exit"
