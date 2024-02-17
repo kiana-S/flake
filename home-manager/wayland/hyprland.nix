@@ -127,23 +127,10 @@ in {
         "$mod Shift, 0, movetoworkspace, 10"
       ];
 
-      bindl = let
-        # Volume using pamixer
-        audio-disp = "${scripts}/multimedia Volume pamixer $(pamixer --get-volume)";
-        audio      = cmd: "pamixer ${cmd} && ${audio-disp}";
-        # Brightness using brightnessctl
-        brightness-disp = ''${scripts}/multimedia Brightness brightnessctl $(brightnessctl -e -m | cut -d "," -f4 | tr -d "%")'';
-        brightness      = x: "brightnessctl -e set ${x} && ${brightness-disp}";
-      in [
-          # Special XF86 key bindings
-        ", XF86AudioRaiseVolume, exec, ${audio "-i 2"}"
-        ", XF86AudioLowerVolume, exec, ${audio "-d 2"}"
-        "Shift, XF86AudioRaiseVolume, exec, ${audio "-i 2 --allow-boost"}"
-        "Shift, XF86AudioLowerVolume, exec, ${audio "-d 2 --allow-boost"}"
+      bindl = [
+        # XF86 key bindings
         ", XF86AudioMute, exec, pamixer --toggle-mute"
         ", XF86AudioMicMute, exec, pactl set-source-mute @DEFAULT_SOURCE@ toggle"
-        ", XF86MonBrightnessDown, exec, ${brightness "4%-"}"
-        ", XF86MonBrightnessUp, exec, ${brightness "4%+"}"
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPrev, exec, playerctl previous"
@@ -151,6 +138,23 @@ in {
         # Screenshot
         ", Print, exec, ${scripts}/screenshot"
         "Shift, Print, exec, ${scripts}/screenshot-slurp"
+      ];
+
+      bindle = let
+        # Volume using pamixer
+        audio-disp = "${scripts}/multimedia Volume pamixer $(pamixer --get-volume)";
+        audio      = cmd: "pamixer ${cmd} && ${audio-disp}";
+        # Brightness using brightnessctl
+        brightness-disp = ''${scripts}/multimedia Brightness brightnessctl $(brightnessctl -e -m | cut -d "," -f4 | tr -d "%")'';
+        brightness      = x: "brightnessctl -e set ${x} && ${brightness-disp}";
+      in [
+        # XF86 key bindings
+        ", XF86AudioRaiseVolume, exec, ${audio "-i 2"}"
+        ", XF86AudioLowerVolume, exec, ${audio "-d 2"}"
+        "Shift, XF86AudioRaiseVolume, exec, ${audio "-i 2 --allow-boost"}"
+        "Shift, XF86AudioLowerVolume, exec, ${audio "-d 2 --allow-boost"}"
+        ", XF86MonBrightnessDown, exec, ${brightness "4%-"}"
+        ", XF86MonBrightnessUp, exec, ${brightness "4%+"}"
       ];
     };
   };
