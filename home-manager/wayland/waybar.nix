@@ -170,7 +170,6 @@
 
         #workspaces button:hover {
             box-shadow: inherit;
-            text-shadow: inherit;
             background: @background;
             border: none;
             padding: 0px 3px;
@@ -180,6 +179,11 @@
         #workspaces button.active {
           color: shade(@pink, 1.1);
           text-shadow: 0px 0px 2px shade(@pink, 1.2);
+        }
+
+        #workspaces button.urgent {
+            background-color: @altred;
+            color: #ffffff;
         }
 
         #clock,
