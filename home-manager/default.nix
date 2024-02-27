@@ -36,22 +36,4 @@
       };
     };
   };
-
-  programs.gpg.enable = true;
-  programs.gpg.package = pkgs.gnupg.overrideAttrs (orig: {
-    version = "2.4.0";
-    src = pkgs.fetchurl {
-      url = "mirror://gnupg/gnupg/gnupg-2.4.0.tar.bz2";
-      hash = "sha256-HXkVjdAdmSQx3S4/rLif2slxJ/iXhOosthDGAPsMFIM=";
-    };
-  });
-
-  services.gpg-agent = {
-    enable = true;
-    enableSshSupport = true;
-    pinentryFlavor = "curses";
-    extraConfig = ''
-      allow-loopback-pinentry
-    '';
-  };
 }
