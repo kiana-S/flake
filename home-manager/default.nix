@@ -5,10 +5,7 @@
 
   home.stateVersion = "21.11";
 
-  imports = [ ./shell ./wayland ./password.nix ./email.nix ];
-
-  xdg.enable = true;
-  xdg.userDirs.enable = true;
+  imports = [ ./shell ./wayland ./xdg.nix ./password.nix ./email.nix ];
 
   programs.git = {
     enable = true;
