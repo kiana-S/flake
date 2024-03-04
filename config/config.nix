@@ -99,7 +99,7 @@ in
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryFlavor = "curses";
+    pinentryFlavor = "gnome3";
   };
 
   # This value determines the NixOS release from which the default
