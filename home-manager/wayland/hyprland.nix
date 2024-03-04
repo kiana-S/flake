@@ -74,7 +74,7 @@ in {
         "$mod, M, exec, swaylock"
 
         # Emacs Everywhere
-        "$mod, Q, exec, $HOME/.emacs.d/bin/doom +everywhere"
+        "$mod, Q, exec, $HOME/.config/emacs/bin/doom +everywhere"
 
         # Windows
         "$mod, Left, movefocus, l"
