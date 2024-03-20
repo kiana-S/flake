@@ -30,11 +30,9 @@
   programs.sway.extraPackages = [];
 
   services.emacs.enable = true;
-  services.emacs.package = pkgs.emacs29.override {
-      withPgtk = true;
-      withWebP = true;
-      withSQLite3 = true;
-  };
+  services.emacs.package = with pkgs;
+    (emacsPackagesFor (pkgs.emacs29.override { withPgtk = true; }))
+      .emacsWithPackages (epkgs: [ epkgs.vterm ]);
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
