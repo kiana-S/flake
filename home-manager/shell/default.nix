@@ -6,6 +6,9 @@
   ];
 
   programs.fish.enable = true;
+  programs.fish.shellAliases = {
+    l = "ls -al";
+  };
 
   programs.eza = {
     enable = true;

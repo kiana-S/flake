@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    gcc
     ffmpeg
     openssl
     jaq
@@ -19,8 +20,6 @@
     graphviz
     texlive.combined.scheme-full
     (aspellWithDicts (ps: with ps; [ en en-computers en-science ]))
-
-    gcc
   ];
 
   programs.hyprland.enable = true;
