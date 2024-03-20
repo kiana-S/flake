@@ -1,15 +1,17 @@
 configuration {
   cycle: false;
   modi: "drun";
-  font: "JetBrainsMono Nerd Font 14";
+  font: "JetBrainsMono Nerd Font 12";
   location: 0;
   terminal: "alacritty";
 
   show-icons: true;
   hide-scrollbar: true;
+	disable-history: false;
+	click-to-exit: true;
 
-  drun-display-format: "{name}";
-  display-drun: "   Apps ";
+  drun-display-format: "{icon} {name}";
+	display-drun: "";
 
   // Bindings
   kb-remove-to-eol: "";
@@ -18,103 +20,141 @@ configuration {
   kb-accept-entry: "Control+m,Return,KP_Enter";
   kb-element-next: "Tab,Control+j";
   kb-element-prev: "ISO_Left_Tab,Control+k";
-  kb-row-left: "Control+Page_Up,Control+h";
-  kb-row-right: "Control+Page_Down,Control+l";
 }
 
 @theme "tokyonight"
 
-element-text, element-icon, mode-switcher {
-  background-color: inherit;
-  text-color:       inherit;
-}
-
 window {
-  // Using percentages here breaks literally everything for some reason
-  height: 550px;
-  width: 50%;
-  /* border: 3px; */
-  border-color: @border-col;
-  background-color: @bg-col;
-  border-radius: 12px;
-}
-
-mainbox {
-  background-color: @bg-col;
-}
-
-inputbar {
-  children: [prompt,entry];
-  background-color: @selected-col;
-  border-radius: 12px;
-  padding: 2px;
+	transparency: "real";
+	background-color: @bg;
+	text-color: @fg;
+	border: 2px;
+	border-color: @blue;
+	border-radius: 30px;
+	width: 550px;
+  height: 65%;
+	anchor: center;
+	x-offset: 0;
+	y-offset: 0;
 }
 
 prompt {
-  background-color: @blue;
-  padding: 6px;
-  text-color: @bg-col;
-  border-radius: 8px;
-  margin: 20px 0px 20px 20px;
+	enabled: true;
+	padding: 8px;
+	background-color: @bg;
+	text-color: @red;
 }
 
 textbox-prompt-colon {
-  expand: false;
-  str: ":";
+	expand: false;
+	str: "";
+	border-radius: 100%;
+	background-color: @selected;
+	text-color: @fg;
+	padding: 8px 16px 8px 12px;
 }
 
 entry {
-  padding: 6px;
-  margin: 20px 0px 4px 10px;
-  text-color: @fg-col;
-  background-color: @selected-col;
+	background-color: @bg;
+	text-color: @fg;
+	placeholder-color: @placeholder;
+	expand: true;
+	horizontal-align: 0;
+	placeholder: "Search...";
+	blink: true;
+	border: 0px 0px 2px 0px;
+	border-color: @blue;
+	border-radius: 10px;
+	padding: 8px;
+}
+
+inputbar {
+	children: [ textbox-prompt-colon, prompt, entry ];
+	background-color: @bg;
+	text-color: @fg;
+	expand: false;
+	border: 0px 0px 0px 0px;
+	border-radius: 0px;
+	border-color: @blue;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	position: center;
+}
+
+case-indicator {
+	background-color: @bg;
+	text-color: @fg;
+	spacing: 0;
 }
 
 listview {
-  padding: 10 10 0;
-  margin: 10 10 0 10;
-  columns: 5;
-  background-color: @bg-col;
+	background-color: @bg;
+	columns: 1;
+	lines: 10;
+	spacing: 4px;
+	cycle: false;
+	border: 0px;
+	dynamic: true;
+	layout: vertical;
+	scrollbar: false;
 }
 
-element {
-  padding: 15 10 15;
-  background-color: @bg-col;
-  text-color: @fg-col;
-  orientation: vertical;
+mainbox {
+	background-color: @bg;
+	children: [ inputbar, listview ];
+	spacing: 15px;
+	padding: 15px;
+}
+
+element.normal.normal,
+element.alternate.normal {
+	background-color: @bg;
+	text-color: @fg;
+	orientation: horizontal;
+	border-radius: 4px;
+	padding: 6px 6px 6px 6px;
+	border: 0px;
 }
 
 element-icon {
-  size: 56px;
-  horizontal-align: 0.5;
-}
-
-element selected {
-  background-color: @selected-col;
-  text-color: @blue ;
-  border-radius: 8px;
+	background-color: inherit;
+	text-color: inherit;
+	horizontal-align: 0.5;
+	vertical-align: 0.5;
+	size: 24px;
+	border: 0px;
 }
 
 element-text {
-  vertical-align: 0.5;
-  horizontal-align: 0.5;
-  expand: true;
-  font: "JetBrainsMono Nerd Font Medium 10";
+	background-color: inherit;
+	text-color: inherit;
+	expand: true;
+	horizontal-align: 0;
+	vertical-align: 0.5;
+	margin: 2px 0px 2px 2px;
 }
 
-mode-switcher {
-  spacing: 0;
+element normal.urgent,
+element alternate.urgent {
+	background-color: @UGT;
+	text-color: @FG;
+	border-radius: 9px;
 }
 
-button {
-  padding: 10px;
-  background-color: @bg-col;
-  text-color: @empty;
-  vertical-align: 0.5;
-  horizontal-align: 0.5;
+element selected {
+	background-color: @selected;
+	text-color: @blue;
+	border: 0px 0px 0px 0px;
+	border-radius: 10px;
+	border-color: @blue;
 }
 
-button selected {
-  background-color: @bg-col;
-  text-color: @blue;
+element selected.urgent {
+	background-color: @red;
+	text-color: @fg2;
+}
+
+element selected.active {
+	background-color: @selected;
+	color: @blue;
 }
