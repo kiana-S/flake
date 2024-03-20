@@ -29,73 +29,66 @@ outputs = { self,
     email = "kiana.a.sheibani@gmail.com";
 
     moduleArgs = { inherit username fullname email; } // inputs;
-    lib = nixpkgs.lib;
+
+    mkConfig =
+      { platform,
+        system ? "x86_64-linux",
+        configModules ? [ ./config ],
+        configExtraModules ? [],
+        homeModules ? [ ./home-manager ],
+        homeExtraModules ? []
+      }:
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules =
+          configModules ++
+          configExtraModules ++
+          [
+            ./platform.nix
+            { _module.args = moduleArgs;
+              inherit platform; }
+            ./hardware-configuration/${platform}.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = moduleArgs;
+
+              home-manager.sharedModules = [ ./platform.nix { inherit platform; } ];
+              home-manager.users.${username} = {
+                imports = homeModules ++ homeExtraModules;
+              };
+            }
+          ];
+      };
   in {
     nixosConfigurations = {
-      "${username}-desktop" = lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./config
-
-          ./platform.nix
-          ./hardware-configuration/desktop.nix
-          { _module.args = moduleArgs;
-            platform = "desktop"; }
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.users.${username} = import ./home-manager;
-
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.sharedModules = [ ./platform.nix { platform = "desktop"; } ];
-            home-manager.extraSpecialArgs = moduleArgs;
-          }
-        ]; 
+      "${username}-desktop" = mkConfig {
+        platform = "desktop";
       };
 
-      "${username}-laptop" = lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./config
-
-          { _module.args = moduleArgs;
-            platform = "laptop"; }
-          ./platform.nix
-          ./hardware-configuration/laptop.nix
-          home-manager.nixosModules.home-manager
+      "${username}-laptop" = mkConfig {
+        platform = "laptop";
+        configExtraModules = [
           nixos-hardware.nixosModules.microsoft-surface-pro-intel
-          {
-            home-manager.users.${username} = import ./home-manager;
-
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.sharedModules = [ ./platform.nix { platform = "laptop"; } ];
-            home-manager.extraSpecialArgs = moduleArgs;
-          }
         ];
       };
 
-      "${username}-mobile" = lib.nixosSystem {
+      "${username}-mobile" = mkConfig {
+        platform = "mobile";
         system = "aarch64-linux";
-        modules = [
+        configModules = [
           ./config
           ./mobile/config.nix
-
-          { _module.args = moduleArgs;
-            platform = "mobile"; }
-          ./platform.nix
-          ./hardware-configuration/mobile.nix
           home-manager.nixosModules.home-manager
-          (import (mobile-nixos + /lib/configuration.nix) { device = "pine64-pinephonepro"; })
-          (sxmo + /modules/sxmo) (sxmo + /modules/tinydm)
-          {
-            home-manager.users.${username} = import ./mobile/home-manager.nix;
-
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.sharedModules = [ ./platform.nix { platform = "mobile"; } ];
-            home-manager.extraSpecialArgs = moduleArgs;
-          }
+          (import (mobile-nixos + /lib/configuration.nix)
+            { device = "pine64-pinephonepro"; })
+          (sxmo + /modules/sxmo)
+          (sxmo + /modules/tinydm)
+        ];
+        homeModules = [
+          ./mobile/home-manager.nix
         ];
       };
     };
