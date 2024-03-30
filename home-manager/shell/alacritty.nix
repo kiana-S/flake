@@ -32,7 +32,7 @@
       };
 
       font =
-        let family = "VictorMono";
+        let family = "VictorMono Nerd Font";
             font-style = style: { inherit family style; };
         in {
           normal      = font-style "Regular";

@@ -69,7 +69,13 @@ in
       noto-fonts-cjk
       noto-fonts-emoji
       jetbrains-mono
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
+      (nerdfonts.override {
+        fonts = [
+          "VictorMono"
+          "JetBrainsMono"
+          "NerdFontsSymbolsOnly"
+        ];
+      })
       font-awesome
       emacs-all-the-icons-fonts
       source-sans-pro
