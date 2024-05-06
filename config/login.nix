@@ -25,6 +25,7 @@ lib.mkIf (config.platform != "mobile")
       displayManager.defaultSession = "hyprland";
       displayManager.sddm = {
         enable = true;
+        wayland.enable = true;
         theme = "tokyo-night-sddm";
       };
     };
