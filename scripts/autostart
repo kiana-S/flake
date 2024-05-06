@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-swaybg -o '*' -i "$1" -m fill &
+swaybg -o '*' -i "$background" -m fill &
 
 waybar &
 

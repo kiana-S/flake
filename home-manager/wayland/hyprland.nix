@@ -21,7 +21,7 @@ in {
       "$menu" = "rofi -show drun";
 
       exec-once = [
-        "${scripts}/autostart ${../../assets/background.png}"
+        "background=${../../assets/background.png} ${scripts}/autostart"
       ];
 
       general = {
@@ -49,6 +49,10 @@ in {
         font_size = 14;
       };
 
+      windowrulev2 = [
+        "float, initialTitle:(emacs-everywhere)"
+        "bordercolor rgb(e0af68), fullscreen:1"
+      ];
       layerrule = [
         "noanim, ^(notifications)$"
       ];
