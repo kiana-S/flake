@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   inherit (config) platform;
-  scripts = ../../scripts;
+  scripts = ./scripts;
   modifier = "SUPER";
   terminal = "alacritty";
 in {
