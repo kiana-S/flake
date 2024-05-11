@@ -5,9 +5,11 @@
     ffmpeg
     openssl
     jaq
+    socat
     git
     wget
     libnotify
+    inotify-tools
     ripgrep
     unzip
     tldr

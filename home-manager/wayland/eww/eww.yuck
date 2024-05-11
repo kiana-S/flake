@@ -1,0 +1,339 @@
+
+;; Window Info
+
+(deflisten window :initial "{}"
+  "~/.config/eww/scripts/active-window")
+
+(defwidget bar_window []
+  (box :class "bar-window"
+       :orientation "v"
+       :space-evenly false
+    (label :class "detail"
+           :halign "start"
+           :valign "end"
+           :limit-width 60
+           :text {window.class ?: "Desktop"})
+    (label :halign "start"
+           :valign "end"
+           :limit-width 55
+           :text {window.title ?: "Workspace ${current_workspace}"})))
+
+;; Workspaces
+
+(deflisten workspaces :initial "[]"
+  "~/.config/eww/scripts/get-workspaces")
+(deflisten current_workspace :initial "1"
+  "~/.config/eww/scripts/get-active-workspace")
+
+(defwidget bar_workspace_button [workspace]
+  (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+    (overlay
+      (box :class "segment workspace-button ${workspace.id == current_workspace ? "current" : ""
+} ${workspace.windows > 0 ? "occupied" : "empty"
+} ${workspace.previous > 0 ? "previous-occupied" : "previous-empty"
+} ${workspace.next > 0 ? "next-occupied" : "next-empty"}"
+        (label :text "${workspace.id}"))
+      (box :visible {workspace.id == current_workspace}
+        (label :text "${workspace.id}")))))
+
+(defwidget bar_workspaces []
+  (eventbox :onscroll "~/.config/eww/scripts/change-active-workspace {} ${current_workspace}"
+    (box :class "bar-workspaces"
+         :orientation "h"
+         :space-evenly true
+      (for workspace in workspaces
+        (bar_workspace_button :workspace workspace)))))
+
+;; Time
+
+(defwidget bar_time []
+  (box :class "bar-time segment"
+       :orientation "h"
+       :width 195
+       :space-evenly false
+       :spacing 6
+    (label :halign "start"
+           :yalign 0.5
+           :text {formattime(EWW_TIME, "%H:%M:%S")})
+    (label :class "bar-date"
+           :halign "end"
+           :hexpand true
+           :yalign 0.5
+           :text {formattime(EWW_TIME, "%A, %Y-%m-%d")})))
+
+;; Playerctl
+
+(deflisten mpris :initial "{}"
+  "~/.config/eww/scripts/mpris-metadata")
+
+(defwidget bar_music []
+  (eventbox :onclick "playerctl play-pause"
+    (box :class "bar-music segment"
+         :orientation "h"
+         :width 195
+         :space-evenly false
+    (box :class "progress"
+      (overlay
+        (circular-progress :class "back"
+                           :value 100
+                           :width 25
+                           :thickness 2
+                           :start-at 75
+                           :clockwise true)
+        (circular-progress :class "front"
+                           :value {(mpris.position ?: 0) == 0 ||
+                                   (mpris.duration ?: 0) == 0 ? 0 :
+                                   mpris.position > mpris.duration ? 100 :
+                                   mpris.position / mpris.duration * 100}
+                           :width 25
+                           :thickness 2
+                           :start-at 75
+                           :clockwise true)
+        (label :class "symbol ${mpris.status == "Playing" ? "playing" : "paused"}"
+               :text {mpris.status == "Playing" ? "󰏤" : ""})))
+    (box :orientation "v"
+         :space-evenly false
+         :visible {(mpris.title ?: "") != "" && (mpris.status ?: "Stopped") != "Stopped"}
+      (label :class "bar-artist detail"
+             :halign "start"
+             :limit-width 30
+             :text {mpris.artist ?: ""})
+      (label :halign "bar-title"
+             :limit-width 25
+             :text {mpris.title ?: ""})))))
+
+;; Scales (Volume + Brightness)
+
+
+(defwidget bar_scale [?class reveal_name reveal value symbol onchange ?onclick]
+  (eventbox :onhover "${EWW_CMD} update ${reveal_name}=true"
+            :onhoverlost "${EWW_CMD} update ${reveal_name}=false"
+    (box :class "bar-scale ${class}"
+         :space-evenly false
+      (eventbox :onclick onclick
+        (label :class "symbol"
+               :text symbol))
+      (revealer :transition "slideright"
+                :reveal reveal
+                :duration "400ms"
+        (scale :value value
+               :orientation "h"
+               :width "100%"
+               :min 0
+               :max 101
+               :onchange onchange))
+      (label :class "percent"
+             :width 29
+             :xalign 0
+             :text "${value}%"))))
+
+
+(defvar volume_reveal false)
+(deflisten volume :initial "0"
+  "~/.config/eww/scripts/volume")
+
+(defwidget bar_volume []
+  (bar_scale :class "bar-volume ${volume.muted ? "muted" : ""}"
+             :reveal_name "volume_reveal"
+             :reveal volume_reveal
+             :value {volume.value}
+             :symbol {volume.muted ? "󰝟" :
+                      volume.value < 5 ? "󰖁" :
+                      volume.value < 35 ? "󰕿" :
+                      volume.value < 66 ? "󰖀" : "󰕾"}
+             :onchange "pamixer --set-volume {}"
+             :onclick "pamixer -t"))
+
+
+(defvar brightness_reveal false)
+(deflisten brightness :initial "0"
+  "~/.config/eww/scripts/brightness")
+
+(defwidget bar_brightness []
+  (bar_scale :class "bar-brightness"
+             :reveal_name "brightness_reveal"
+             :reveal brightness_reveal
+             :value brightness
+             :symbol "󰃠"
+             :onchange "brightnessctl -e s {}%"))
+
+
+;; Circular Indicators
+
+(defwidget bar_circular [?class ?critical ?tooltip value symbol]
+  (box :class "bar-circular ${class} ${(critical ?: false) ? "critical" : ""}"
+       :orientation "h"
+       :tooltip tooltip
+    (overlay
+      (circular-progress :class "back"
+                         :value 100
+                         :width 25
+                         :thickness 2
+                         :start-at 75
+                         :clockwise true)
+      (circular-progress :class "front"
+                         :value value
+                         :width 25
+                         :thickness 2
+                         :start-at 75
+                         :clockwise true)
+      (label :class "symbol"
+             :text symbol))))
+
+(defwidget bar_battery []
+  (bar_circular :class "bar-battery"
+                :critical {EWW_BATTERY["BAT1"].capacity <= 15}
+                :tooltip "Battery: ${EWW_BATTERY["BAT1"].capacity}%"
+                :value {EWW_BATTERY["BAT1"].capacity}
+                :symbol {EWW_BATTERY["BAT1"].status == "Charging" ? "󰂄" : "󰁹"}))
+
+(defwidget bar_ram []
+  (bar_circular :class "bar-ram"
+                :critical {EWW_RAM.used_mem_perc >= 95}
+                :tooltip "RAM: ${round(EWW_RAM.used_mem / 1073741824, 2)
+} / ${round(EWW_RAM.total_mem / 1073741824, 2)} GB (${round(EWW_RAM.used_mem_perc, 2)}%)"
+                :value {EWW_RAM.used_mem_perc}
+                :symbol ""))
+
+(defwidget bar_storage []
+  (bar_circular :class "bar-storage"
+                :tooltip "Storage: ${round(EWW_DISK["/"].used / 1073741824, 2)
+} / ${round(EWW_DISK["/"].total / 1073741824, 0)} GB (${round(EWW_DISK["/"].used_perc, 2)}%)"
+                :value {EWW_DISK["/"].used_perc}
+                :symbol "󰆼"))
+
+;; Network
+
+(defpoll wifi :interval "2s" :initial "{}"
+  "~/.config/eww/scripts/network 802-11-wireless")
+(defpoll ethernet :interval "2s" :initial "{}"
+  "~/.config/eww/scripts/network 802-3-ethernet")
+(defpoll bluetooth :interval "2s" :initial "{}"
+  "~/.config/eww/scripts/network bluetooth")
+
+(defvar internet_reveal false)
+
+(defwidget bar_internet []
+  (box :class "bar-internet ${wifi == "{}" && ethernet == "{}" ? "disabled" : ""}"
+       :space-evenly false
+       :tooltip {ethernet != "{}" ? "${ethernet.name} (${ethernet.device}, ${EWW_NET[ethernet.device].up}B up, ${EWW_NET[ethernet.device].down}B down)" :
+                 wifi != "{}" ? "${wifi.name} (${wifi.device}, ${EWW_NET[wifi.device].NET_UP}B up, ${EWW_NET[wifi.device].NET_DOWN}B down)" : ""}
+    (label :class "symbol"
+           :text {wifi != "{}" ? "󰤨" : ethernet != "{}" ? "󰈁" : "󰤮"})))
+
+(defwidget bar_bluetooth []
+  (box :class "bar-bluetooth ${bluetooth == "{}" ? "disabled" : ""}"
+    (label :limit-width 15
+           :text {bluetooth != "{}" ? "󰂯" : "󰂲"})))
+
+;; Separator
+
+(defwidget bar_sep []
+  (box :class "bar-sep"
+       :hexpand false
+       :vexpand false
+    (label :text "|")))
+
+
+;; Bar Layout
+
+(defwidget bar_left_edge []
+  (box :orientation "h"
+       :space-evenly false
+       :halign "start"
+       :hexpand true
+    (bar_window)))
+
+(defwidget bar_left_wing []
+  (box :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :hexpand true
+    (bar_time)))
+
+(defwidget bar_center []
+  (bar_workspaces))
+
+(defwidget bar_right_wing []
+  (box :orientation "h"
+       :space-evenly false
+       :hexpand true
+    (bar_music)))
+
+(defwidget laptop_bar_right_edge []
+  (box :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :hexpand true
+    (bar_volume)
+    (bar_brightness)
+    (bar_sep)
+    (bar_bluetooth)
+    (bar_internet)
+    (bar_sep)
+    (bar_storage)
+    (bar_ram)
+    (bar_battery)))
+
+(defwidget laptop_bar_layout []
+  (centerbox :class "bar"
+             :orientation "h"
+    (box :orientation "h"
+         :space-evenly false
+         :hexpand true
+      (bar_left_edge)
+      (bar_left_wing))
+    (bar_center)
+    (box :orientation "h"
+         :space-evenly false
+      (bar_right_wing)
+      (laptop_bar_right_edge))))
+
+
+(defwidget desktop_bar_right_edge []
+  (box :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :hexpand true
+    (bar_volume)
+    (bar_sep)
+    (bar_bluetooth)
+    (bar_internet)
+    (bar_sep)
+    (bar_storage)
+    (bar_ram)))
+
+(defwidget desktop_bar_layout []
+  (centerbox :class "bar"
+             :orientation "h"
+    (box :orientation "h"
+         :space-evenly false
+         :hexpand true
+      (bar_left_edge)
+      (bar_left_wing))
+    (bar_center)
+    (box :orientation "h"
+         :space-evenly false
+      (bar_right_wing)
+      (laptop_bar_right_edge))))
+
+
+(defwindow laptop_bar
+    :geometry (geometry :width "100%"
+                        :height "3%"
+                        :anchor "top center")
+    :namespace "eww-bar"
+    :stacking "fg"
+    :exclusive true
+    :focusable false
+  (laptop_bar_layout))
+
+(defwindow desktop_bar
+    :geometry (geometry :width "100%"
+                        :height "3%"
+                        :anchor "top center")
+    :namespace "eww-bar"
+    :stacking "fg"
+    :exclusive true
+    :focusable false
+  (desktop_bar_layout))

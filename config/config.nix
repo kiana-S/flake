@@ -64,10 +64,8 @@ in
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
+      # Monospace
       victor-mono
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
       jetbrains-mono
       (nerdfonts.override {
         fonts = [
@@ -78,7 +76,18 @@ in
       })
       font-awesome
       emacs-all-the-icons-fonts
+
+      # Regular
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
       source-sans-pro
+
+      # Display
+      quicksand
+
+      # Unicode
+      symbola
     ];
 
     fontconfig = {

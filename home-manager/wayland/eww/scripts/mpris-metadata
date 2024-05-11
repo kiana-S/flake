@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+playerctl metadata --follow --format \
+'{"playerName": "{{ playerName }}",'\
+'"status": "{{ status }}",'\
+'"artist": "{{ artist }}",'\
+'"title": "{{ title }}",'\
+'"album": "{{ album }}",'\
+'"position": "{{ position }}",'\
+'"position_d": "{{ duration(position) }}",'\
+'"duration": "{{ mpris:length }}",'\
+'"duration_d": "{{ duration(mpris:length) }}"}'

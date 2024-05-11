@@ -1,0 +1,247 @@
+$background: #1a1626;
+$background-alt: #252630;
+$background-scale: #414868;
+$foreground: #c0caf5;
+$foreground-alt: #8189af;
+$foreground-light: #343b58;
+$disabled: #565f89;
+$accent: #f6a8cf;
+
+* {
+  all: unset;
+}
+
+@mixin segment {
+  background-color: $background-alt;
+  border-radius: 20px;
+  margin: 0px 2px;
+}
+
+.bar {
+  background-color: $background;
+  font-family: "Quicksand Medium";
+  color: $foreground;
+  font-size: 13;
+
+  padding: 3px 10px;
+}
+
+
+tooltip {
+  background-color: rgba(0,0,0,0.8);
+  font-family: "JetBrains Mono";
+  font-size: 12;
+}
+
+.detail {
+  font-size: 10;
+  color: $foreground-alt;
+}
+
+.bar-sep {
+  margin: 0px 5px;
+  color: $background-alt;
+  font-size: 22;
+}
+
+.bar-window {
+  margin-left: 4px;
+
+  .detail {
+    margin-top: 1px;
+  }
+
+  :not(.detail) {
+    margin-top: -2px;
+    margin-left: 1px;
+  }
+}
+
+.bar-time {
+  @include segment;
+  font-size: 15;
+  padding: 0px 10px;
+
+  .bar-date {
+    margin-top: 1px;
+    font-size: 11;
+    color: #a9b1d6;
+  }
+}
+
+.bar-music {
+  @include segment;
+  padding-left: 3px;
+  padding-right: 10px;
+
+  .progress {
+    margin-right: 5px;
+
+    .back {
+      color: $background-scale;
+    }
+
+    .front {
+      color: $accent;
+    }
+  }
+
+  .symbol.paused {
+    font-size: 12;
+    margin-left: 2px;
+  }
+
+  .symbol.playing {
+    font-size: 15;
+    margin-top: 1px;
+  }
+
+  .bar-artist {
+    margin-top: 1px;
+    margin-bottom: -2px;
+  }
+
+  .bar-title {
+    margin-bottom: -3px;
+  }
+}
+
+
+.bar-workspaces {
+  @include segment;
+  padding: 3px 5px;
+
+  .workspace-button {
+    padding: 0px 5px;
+    border-radius: 20px;
+    color: #51587a;
+
+    &.occupied {
+      background-color: $background-scale;
+      color: $accent;
+    }
+
+    &.current + box {
+      padding: 0px 7px;
+      border-radius: 20px;
+      background-color: $accent;
+      color: $foreground-light;
+    }
+
+    &.occupied.previous-occupied {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &.occupied.next-occupied {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
+
+scale trough {
+  background-color: $background-scale;
+  border-radius: 5px;
+  min-height: 6px;
+  min-width: 60px;
+  margin: 0px 5px;
+
+  highlight {
+    border-radius: 5px;
+  }
+}
+
+.bar-scale {
+  margin: 0px 5px;
+
+  .percent {
+    margin-top: -1px;
+    margin-left: 3px;
+  }
+}
+
+@mixin scale-color($color) {
+  color: $color;
+
+  scale highlight {
+    background-color: $color;
+  }
+}
+
+.bar-volume {
+  @include scale-color(#7dcfff);
+  &.muted { @include scale-color(#f7768e); }
+
+  .symbol {
+    margin-right: 6px;
+    font-size: 17;
+  }
+}
+
+.bar-brightness {
+  @include scale-color(#e0af68);
+
+  .symbol {
+    margin-right: 7px;
+    font-size: 14;
+  }
+}
+
+.bar-internet {
+  margin-left: 7px;
+  margin-right: 10px;
+  font-family: "JetBrains Mono";
+  color: #bb9af7;
+  font-size: 12;
+
+  &.disabled {
+    color: $disabled;
+  }
+
+  .symbol {
+    font-size: 15;
+  }
+}
+
+.bar-bluetooth {
+  margin: 0px 5px;
+  font-size: 15;
+  color: #7aa2f7;
+
+  &.disabled {
+    color: $disabled;
+  }
+}
+
+
+.bar-circular {
+  margin: 0px 4px;
+  font-size: 15;
+
+  .back {
+    color: $background-scale;
+  }
+
+  &.critical {
+    color: #f7768e;
+  }
+}
+
+.bar-battery {
+  color: #8ece6a;
+}
+
+.bar-ram {
+  color: #b4f9f8;
+  .symbol {
+    margin-right: 5px;
+  }
+}
+
+.bar-storage {
+  color: #cfc9c2;
+  .symbol {
+    margin-right: 1px;
+  }
+}

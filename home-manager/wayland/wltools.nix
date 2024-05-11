@@ -57,6 +57,12 @@
 
   xdg.configFile.rofi.source = ./rofi;
 
+  # EWW
+
+  programs.eww.enable = true;
+  programs.eww.package = pkgs.eww-wayland;
+  programs.eww.configDir = ./eww;
+
   # Mako
 
   services.mako = {

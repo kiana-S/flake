@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+direction=$1
+current=$2
+
+min=1
+max=10
+
+function clamp {
+	if test $1 -lt $min; then
+		echo $min
+	elif test $1 -gt $max; then
+		echo $max
+	else
+		echo $1
+	fi
+}
+
+if test "$direction" = "down"
+then
+  target=$(clamp $(($current+1)))
+  echo "jumping to $target"
+  hyprctl dispatch workspace $target
+elif test "$direction" = "up"
+then
+  target=$(clamp $(($current-1)))
+  echo "jumping to $target"
+	hyprctl dispatch workspace $target
+fi

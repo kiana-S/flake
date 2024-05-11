@@ -1,8 +1,9 @@
 { config, pkgs, lib, ... }:
 let
-scripts = ../../scripts;
-modifier = "SUPER";
-terminal = "alacritty";
+  inherit (config) platform;
+  scripts = ../../scripts;
+  modifier = "SUPER";
+  terminal = "alacritty";
 in {
   home.packages = with pkgs; [
     swaybg
@@ -11,7 +12,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    enableNvidiaPatches = config.platform == "desktop";
+    enableNvidiaPatches = platform == "desktop";
     systemd.enable = true;
     xwayland.enable = true;
 
@@ -21,7 +22,7 @@ in {
       "$menu" = "rofi -show drun";
 
       exec-once = [
-        "background=${../../assets/background.png} ${scripts}/autostart"
+        "background=${../../assets/background.png} platform=${platform} ${scripts}/autostart"
       ];
 
       general = {
@@ -149,7 +150,7 @@ in {
         audio-disp = "${scripts}/multimedia Volume pamixer $(pamixer --get-volume)";
         audio      = cmd: "pamixer ${cmd} && ${audio-disp}";
         # Brightness using brightnessctl
-        brightness-disp = ''${scripts}/multimedia Brightness brightnessctl $(brightnessctl -e -m | cut -d "," -f4 | tr -d "%")'';
+        brightness-disp = ''${scripts}/multimedia Brightness brightnessctl $(brightnessctl -e -m | cut -d, -f4 | tr -d "%")'';
         brightness      = x: "brightnessctl -e set ${x} && ${brightness-disp}";
       in [
         # XF86 key bindings

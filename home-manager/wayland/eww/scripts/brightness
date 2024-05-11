@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+brightnessctl -me | cut -d, -f4 | tr -d '%'
+device=$(brightnessctl -m | head -n 1 | cut -d, -f1)
+while true; do
+  inotifywait /sys/class/backlight/"$device"/brightness &>/dev/null
+  brightnessctl -me | cut -d, -f4 | tr -d '%'
+done
