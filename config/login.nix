@@ -19,14 +19,10 @@ lib.mkIf (config.platform != "mobile")
       qtgraphicaleffects
     ];
 
-    services.xserver = {
-      enable = true;
-
-      displayManager.defaultSession = "hyprland";
-      displayManager.sddm = {
+    services.displayManager.defaultSession = "hyprland";
+    services.displayManager.sddm = {
         enable = true;
         wayland.enable = true;
         theme = "tokyo-night-sddm";
-      };
     };
   })

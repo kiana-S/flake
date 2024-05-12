@@ -1,6 +1,5 @@
 { config, pkgs, lib, ... }:
 let
-  inherit (config) platform;
   scripts = ./scripts;
   modifier = "SUPER";
   terminal = "alacritty";
@@ -12,7 +11,6 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    enableNvidiaPatches = platform == "desktop";
     systemd.enable = true;
     xwayland.enable = true;
 
@@ -24,7 +22,7 @@ in {
       "$menu" = "rofi -show drun";
 
       exec-once = [
-        "background=${../../assets/background.png} platform=${platform} ${scripts}/autostart"
+        "background=${../../assets/background.png} platform=${config.platform} ${scripts}/autostart"
       ];
 
       general = {

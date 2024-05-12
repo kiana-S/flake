@@ -14,12 +14,9 @@
 
   # Eza - ls replacement
 
-  programs.eza = {
-    enable = true;
-    enableAliases = true;
-  };
+  programs.eza.enable = true;
   programs.fish.shellAliases = {
-    l = "ls -al";
+    l = "ls -la";
   };
 
   # rlwrap config

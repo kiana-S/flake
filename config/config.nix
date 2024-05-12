@@ -104,17 +104,10 @@ in
 
   services.openssh.enable = true;
 
-  programs.gnupg.package = pkgs.gnupg.overrideAttrs (orig: {
-    version = "2.4.0";
-    src = pkgs.fetchurl {
-      url = "mirror://gnupg/gnupg/gnupg-2.4.0.tar.bz2";
-      hash = "sha256-HXkVjdAdmSQx3S4/rLif2slxJ/iXhOosthDGAPsMFIM=";
-    };
-  });
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryFlavor = "gnome3";
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
 
   # This value determines the NixOS release from which the default
