@@ -16,6 +16,8 @@ in {
     systemd.enable = true;
     xwayland.enable = true;
 
+    plugins = with pkgs.hyprlandPlugins; [ hy3 ];
+
     settings = {
       "$mod" = modifier;
       "$terminal" = terminal;
@@ -26,6 +28,8 @@ in {
       ];
 
       general = {
+        layout = "hy3";
+
         border_size = 3;
         gaps_in = 8;
         gaps_out = 8;
@@ -37,6 +41,15 @@ in {
         "col.active_border" = "rgb(7bc5e4)";
         "col.nogroup_border" = "rgb(d5556f)";
         "col.nogroup_border_active" = "rgb(d5556f)";
+      };
+
+      plugin.hy3 = {
+        tab_first_window = false;
+
+        tabs = {
+          height = 6;
+          render_text = false;
+        };
       };
 
       decoration = {
@@ -51,7 +64,6 @@ in {
       };
 
       windowrulev2 = [
-        "float, initialTitle:(emacs-everywhere)"
         "bordercolor rgb(e0af68), fullscreen:1"
       ];
       layerrule = [
@@ -71,41 +83,46 @@ in {
 
       misc.disable_hyprland_logo = true;
 
+      # Bindings
+
       bind = [
         "$mod, Return, exec, $terminal"
         "$mod, D, exec, $menu"
-        "$mod, E, exec, ${scripts}/exit"
-        "$mod Shift, E, exit,"
+        "$mod Shift, E, exec, ${scripts}/exit"
         "$mod, M, exec, swaylock"
 
         # Emacs Everywhere
-        "$mod, Q, exec, $HOME/.config/emacs/bin/doom +everywhere"
+        # "$mod, Q, exec, $HOME/.config/emacs/bin/doom +everywhere"
 
         # Windows
-        "$mod, Left, movefocus, l"
-        "$mod, Right, movefocus, r"
-        "$mod, Up, movefocus, u"
-        "$mod, Down, movefocus, d"
-        "$mod, H, movefocus, l"
-        "$mod, L, movefocus, r"
-        "$mod, K, movefocus, u"
-        "$mod, J, movefocus, d"
+        "$mod, Left, hy3:movefocus, l"
+        "$mod, Right, hy3:movefocus, r"
+        "$mod, Up, hy3:movefocus, u"
+        "$mod, Down, hy3:movefocus, d"
+        "$mod, H, hy3:movefocus, l"
+        "$mod, L, hy3:movefocus, r"
+        "$mod, K, hy3:movefocus, u"
+        "$mod, J, hy3:movefocus, d"
 
-        "$mod Shift, Left, movewindow, l"
-        "$mod Shift, Right, movewindow, r"
-        "$mod Shift, Up, movewindow, u"
-        "$mod Shift, Down, movewindow, d"
-        "$mod Shift, H, movewindow, l"
-        "$mod Shift, L, movewindow, r"
-        "$mod Shift, K, movewindow, u"
-        "$mod Shift, J, movewindow, d"
+        "$mod Shift, Left, hy3:movewindow, l"
+        "$mod Shift, Right, hy3:movewindow, r"
+        "$mod Shift, Up, hy3:movewindow, u"
+        "$mod Shift, Down, hy3:movewindow, d"
+        "$mod Shift, H, hy3:movewindow, l"
+        "$mod Shift, L, hy3:movewindow, r"
+        "$mod Shift, K, hy3:movewindow, u"
+        "$mod Shift, J, hy3:movewindow, d"
 
         "$mod, F, fullscreen, 1"
         "$mod Shift, F, fullscreen, 0"
-        "$mod Shift, Q, killactive,"
-        "$mod, G, togglegroup,"
-        "$mod, Tab, changegroupactive, f"
-        "$mod Shift, Tab, changegroupactive, b"
+        "$mod Shift, Q, hy3:killactive,"
+
+        "$mod, V, hy3:makegroup, v, ephemeral"
+        "$mod, B, hy3:makegroup, h, ephemeral"
+        "$mod, T, hy3:makegroup, tab"
+        "$mod Shift, T, hy3:changegroup, toggletab"
+        "$mod, E, hy3:changegroup, opposite"
+        "$mod, A, hy3:changefocus, raise"
 
         # Workspaces
         "$mod, 1, workspace, 1"
@@ -130,6 +147,10 @@ in {
         "$mod Shift, 8, movetoworkspace, 8"
         "$mod Shift, 9, movetoworkspace, 9"
         "$mod Shift, 0, movetoworkspace, 10"
+      ];
+
+      bindn = [
+        ", mouse:272, hy3:focustab, mouse"
       ];
 
       bindl = [

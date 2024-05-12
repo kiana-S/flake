@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   programs.waybar = {
-    enable = true;
+    enable = false;
 
     settings =
       let spanfa = "<span font=\"Font Awesome 5 Regular 11\">";
