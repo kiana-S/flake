@@ -216,8 +216,8 @@
 (defwidget bar_internet []
   (box :class "bar-internet ${wifi == "{}" && ethernet == "{}" ? "disabled" : ""}"
        :space-evenly false
-       :tooltip {ethernet != "{}" ? "${ethernet.name} (${ethernet.device}, ${EWW_NET[ethernet.device].up}B up, ${EWW_NET[ethernet.device].down}B down)" :
-                 wifi != "{}" ? "${wifi.name} (${wifi.device}, ${EWW_NET[wifi.device].NET_UP}B up, ${EWW_NET[wifi.device].NET_DOWN}B down)" : ""}
+       :tooltip {ethernet != "{}" ? "${ethernet.name} (${ethernet.device})" :
+                 wifi != "{}" ? "${wifi.name} (${wifi.device})" : ""}
     (label :class "symbol"
            :text {wifi != "{}" ? "󰤨" : ethernet != "{}" ? "󰈁" : "󰤮"})))
 
