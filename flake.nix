@@ -78,10 +78,8 @@ outputs = { self,
       "${username}-mobile" = mkConfig {
         platform = "mobile";
         system = "aarch64-linux";
-        configModules = [
-          ./config
+        configExtraModules = [
           ./mobile/config.nix
-          home-manager.nixosModules.home-manager
           (import (mobile-nixos + /lib/configuration.nix)
             { device = "pine64-pinephonepro"; })
           (sxmo + /modules/sxmo)
