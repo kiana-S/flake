@@ -4,18 +4,18 @@
 (deflisten window :initial "{}"
   "~/.config/eww/scripts/active-window")
 
-(defwidget bar_window []
+(defwidget bar_window [class-limit title-limit]
   (box :class "bar-window"
        :orientation "v"
        :space-evenly false
     (label :class "detail"
            :halign "start"
            :valign "end"
-           :limit-width 60
+           :limit-width class-limit
            :text {window.class ?: "Desktop"})
     (label :halign "start"
            :valign "end"
-           :limit-width 55
+           :limit-width title-limit
            :text {window.title ?: "Workspace ${current_workspace}"})))
 
 ;; Workspaces
@@ -46,10 +46,10 @@
 
 ;; Time
 
-(defwidget bar_time []
+(defwidget bar_time [width]
   (box :class "bar-time segment"
        :orientation "h"
-       :width 195
+       :width width
        :space-evenly false
        :spacing 6
     (label :halign "start"
@@ -66,11 +66,11 @@
 (deflisten mpris :initial "{}"
   "~/.config/eww/scripts/mpris-metadata")
 
-(defwidget bar_music []
+(defwidget bar_music [width artist-limit title-limit]
   (eventbox :onclick "playerctl play-pause"
     (box :class "bar-music segment"
          :orientation "h"
-         :width 195
+         :width width
          :space-evenly false
     (box :class "progress"
       (overlay
@@ -96,16 +96,16 @@
          :visible {(mpris.title ?: "") != "" && (mpris.status ?: "Stopped") != "Stopped"}
       (label :class "bar-artist detail"
              :halign "start"
-             :limit-width 30
+             :limit-width artist-limit
              :text {mpris.artist ?: ""})
       (label :halign "bar-title"
-             :limit-width 25
+             :limit-width title-limit
              :text {mpris.title ?: ""})))))
 
 ;; Scales (Volume + Brightness)
 
 
-(defwidget bar_scale [?class reveal_name reveal value symbol onchange ?onclick]
+(defwidget bar_scale [?class reveal-name reveal value symbol onchange ?onclick]
   (eventbox :onhover "${EWW_CMD} update ${reveal_name}=true"
             :onhoverlost "${EWW_CMD} update ${reveal_name}=false"
     (box :class "bar-scale ${class}"
@@ -134,7 +134,7 @@
 
 (defwidget bar_volume []
   (bar_scale :class "bar-volume ${volume.muted ? "muted" : ""}"
-             :reveal_name "volume_reveal"
+             :reveal-name "volume_reveal"
              :reveal volume_reveal
              :value {volume.value}
              :symbol {volume.muted ? "󰝟" :
@@ -151,7 +151,7 @@
 
 (defwidget bar_brightness []
   (bar_scale :class "bar-brightness"
-             :reveal_name "brightness_reveal"
+             :reveal-name "brightness_reveal"
              :reveal brightness_reveal
              :value brightness
              :symbol "󰃠"
@@ -223,8 +223,7 @@
 
 (defwidget bar_bluetooth []
   (box :class "bar-bluetooth ${bluetooth == "{}" ? "disabled" : ""}"
-    (label :limit-width 15
-           :text {bluetooth != "{}" ? "󰂯" : "󰂲"})))
+    (label :text {bluetooth != "{}" ? "󰂯" : "󰂲"})))
 
 ;; Separator
 
@@ -242,14 +241,15 @@
        :space-evenly false
        :halign "start"
        :hexpand true
-    (bar_window)))
+    (bar_window :class-limit 60
+                :title-limit 55)))
 
 (defwidget bar_left_wing []
   (box :orientation "h"
        :space-evenly false
        :halign "end"
        :hexpand true
-    (bar_time)))
+    (bar_time :width 195)))
 
 (defwidget bar_center []
   (bar_workspaces))
@@ -258,7 +258,9 @@
   (box :orientation "h"
        :space-evenly false
        :hexpand true
-    (bar_music)))
+    (bar_music :width 195
+               :artist-limit 30
+               :title-limit 25)))
 
 (defwidget laptop_bar_right_edge []
   (box :orientation "h"
@@ -290,6 +292,30 @@
       (laptop_bar_right_edge))))
 
 
+(defwidget desktop_bar_left_edge []
+  (box :orientation "h"
+       :space-evenly false
+       :halign "start"
+       :hexpand true
+    (bar_window :class-limit 90
+                :title-limit 80)))
+
+(defwidget desktop_bar_left_wing []
+  (box :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :hexpand true
+    (bar_time)))
+
+(defwidget desktop_bar_center []
+  (bar_workspaces))
+
+(defwidget desktop_bar_right_wing []
+  (box :orientation "h"
+       :space-evenly false
+       :hexpand true
+    (bar_music)))
+
 (defwidget desktop_bar_right_edge []
   (box :orientation "h"
        :space-evenly false
@@ -309,13 +335,13 @@
     (box :orientation "h"
          :space-evenly false
          :hexpand true
-      (bar_left_edge)
-      (bar_left_wing))
+      (desktop_bar_left_edge)
+      (desktop_bar_left_wing))
     (bar_center)
     (box :orientation "h"
          :space-evenly false
-      (bar_right_wing)
-      (laptop_bar_right_edge))))
+      (desktop_bar_right_wing)
+      (desktop_bar_right_edge))))
 
 
 (defwindow laptop_bar
