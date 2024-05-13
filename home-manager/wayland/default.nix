@@ -9,5 +9,6 @@
     ./hyprland.nix
     ./wltools.nix
     ./waybar.nix
+    ./idle.nix
   ];
 }
