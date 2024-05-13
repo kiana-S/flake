@@ -16,6 +16,24 @@ let
   }
 in {
 
+  services.hypridle.enable = true;
+  services.hypridle.settings = {
+    general = {
+      before_sleep_cmd = "swaylock -f";
+    };
+
+    listener = [
+      {
+        timeout = 120;
+        on-timeout = "swaylock -f --grace=180"
+      }
+      {
+        timeout = 600;
+        on-timeout = "systemctl suspend";
+      }
+    ];
+  };
+
   # Idle inhibiting
 
   home.packages = [

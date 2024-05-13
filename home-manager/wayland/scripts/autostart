@@ -5,8 +5,3 @@ swaybg -o '*' -i "$background" -m fill &
 
 # Status Bar
 eww open "$platform"_bar --screen 0
-
-# Idle Handler
-swayidle timeout 120 'swaylock -f --grace=180' \
-    timeout 600 'systemctl suspend' \
-    before-sleep 'swaylock -f' &
