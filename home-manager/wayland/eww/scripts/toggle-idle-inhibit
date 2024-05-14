@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+if pkill -0 -f wayland-idle-inhibitor; then
+  pkill -f wayland-idle-inhibitor
+else
+  wayland-idle-inhibitor &
+fi
