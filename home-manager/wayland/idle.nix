@@ -1,11 +1,13 @@
 { pkgs, lib, ... }:
 let
-  wayland-idle-inhibitor = pkgs.python312Packages.buildPythonApplication {
+  wayland-idle-inhibitor = pkgs.stdenv.mkDerivation {
     pname = "wayland-idle-inhibitor";
     version = "1.0.0";
 
-    propagatedBuildInputs = with pkgs.python312Packages; [
-      pywayland
+    buildInputs = [
+      (pkgs.python312.withPackages (ps: with ps; [
+        pywayland
+      ]))
     ];
 
     dontUnpack = true;
@@ -13,7 +15,7 @@ let
       install -Dm755 ${./idle/wayland-idle-inhibitor.py} \
         $out/bin/wayland-idle-inhibitor
     '';
-  }
+  };
 in {
 
   services.hypridle.enable = true;
@@ -25,7 +27,7 @@ in {
     listener = [
       {
         timeout = 120;
-        on-timeout = "swaylock -f --grace=180"
+        on-timeout = "swaylock -f --grace=180";
       }
       {
         timeout = 600;
