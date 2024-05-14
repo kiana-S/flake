@@ -25,6 +25,7 @@
   ];
 
   programs.hyprland.enable = true;
+  security.pam.services.hyprlock = {};
 
   programs.fish.enable = true;
   programs.sway.enable = true;

@@ -21,13 +21,13 @@ in {
   services.hypridle.enable = true;
   services.hypridle.settings = {
     general = {
-      before_sleep_cmd = "swaylock -f";
+      before_sleep_cmd = "hyprlock --immediate";
     };
 
     listener = [
       {
         timeout = 120;
-        on-timeout = "swaylock -f --grace=180";
+        on-timeout = "hyprlock";
       }
       {
         timeout = 600;

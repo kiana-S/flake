@@ -36,9 +36,7 @@ in {
         resize_on_border = true;
 
         "col.inactive_border" = "rgb(474f6f)";
-        "col.active_border" = "rgb(7bc5e4)";
-        "col.nogroup_border" = "rgb(d5556f)";
-        "col.nogroup_border_active" = "rgb(d5556f)";
+        "col.active_border" = "rgb(b4f9f8)";
       };
 
       plugin.hy3 = {
@@ -47,6 +45,10 @@ in {
         tabs = {
           height = 6;
           render_text = false;
+
+          "col.active" = "rgb(b4f9f8)";
+          "col.inactive" = "rgb(474f6f)";
+          "col.urgent" = "rgb(f7768e)";
         };
       };
 
@@ -61,9 +63,6 @@ in {
         font_size = 14;
       };
 
-      windowrulev2 = [
-        "bordercolor rgb(e0af68), fullscreen:1"
-      ];
       layerrule = [
         "noanim, ^(notifications)$"
       ];
@@ -87,7 +86,7 @@ in {
         "$mod, Return, exec, $terminal"
         "$mod, D, exec, $menu"
         "$mod Shift, E, exec, ${scripts}/exit"
-        "$mod, M, exec, swaylock"
+        "$mod, M, exec, hyprlock --immediate"
 
         # Emacs Everywhere
         # "$mod, Q, exec, $HOME/.config/emacs/bin/doom +everywhere"

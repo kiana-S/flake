@@ -1,7 +1,6 @@
 { pkgs, config, ... }:
 {
   home.packages = with pkgs; [
-    swaylock-effects
     wl-clipboard
     wtype
     wlroots
@@ -11,31 +10,6 @@
   ];
 
   xdg.configFile = {
-    "swaylock/config".text = ''
-      ignore-empty-password
-      fade-in=0.3
-
-      indicator
-      screenshots
-
-      font=JetBrainsMono
-      text-color=ffffff
-      color=00000000
-      ring-color=7da6ff
-      key-hl-color=7bc5e4
-
-      line-uses-inside
-      indicator-radius=120
-      indicator-thickness=7
-
-      clock
-      datestr=%a, %Y-%m-%d
-
-      effect-scale=0.4
-      effect-vignette=0.3:0.7
-      effect-blur=2x2
-    '';
-
     "swaynag/config".text = ''
       font=JetBrainsMono 10
       layer=top
@@ -48,6 +22,44 @@
       button-background=282E49F0
       button-border-size=2
     '';
+  };
+
+  # Hyprlock
+
+  programs.hyprlock.enable = true;
+  programs.hyprlock.settings = {
+    general = {
+      hide_cursor = true;
+      disable_loading_bar = true;
+      grace = 180;
+    };
+
+    background = [
+      {
+        monitor = "";
+        path = "screenshot";
+        blur_passes = 2;
+        blur_size = 6;
+      }
+    ];
+
+    input-field = [
+      {
+        monitor = "";
+        size = "500, 50";
+        position = "0, -80";
+        dots_center = true;
+        fade_on_empty = false;
+
+
+        font_color = "rgb(a9b1d6)";
+        inner_color = "rgb(1a1b26)";
+        outer_color = "rgb(b4f9f8)";
+        outline_thickness = 3;
+        placeholder_text = ''<span foreground="##565f89">Password</span>'';
+        shadow_passes = 2;
+      }
+    ];
   };
 
   # Rofi
