@@ -341,7 +341,9 @@
     (bar_internet)
     (bar_sep)
     (bar_storage)
-    (bar_ram)))
+    (bar_ram)
+    (bar_sep)
+    (bar_idleinhibit)))
 
 (defwidget desktop_bar_layout []
   (centerbox :class "bar"
@@ -351,7 +353,7 @@
          :hexpand true
       (desktop_bar_left_edge)
       (desktop_bar_left_wing))
-    (bar_center)
+    (desktop_bar_center)
     (box :orientation "h"
          :space-evenly false
       (desktop_bar_right_wing)
