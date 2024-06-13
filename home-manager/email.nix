@@ -1,4 +1,4 @@
-{ config, pkgs, fullname, email, ... }:
+{ config, pkgs, lib, fullname, email, ... }:
 let
   ksumail = "bsheiban@students.kennesaw.edu";
   maildir = "${config.xdg.dataHome}/mail";
@@ -18,7 +18,7 @@ in {
         address = email;
         userName = email;
         flavor = "gmail.com";
-        passwordCommand = "${pass}/bin/pass Email/GmailApp/${email}";
+        passwordCommand = "${lib.getExe pass} email/GmailApp/${email}";
         primary = true;
         mbsync = {
           enable = true;
@@ -34,7 +34,7 @@ in {
         address = ksumail;
         userName = ksumail;
         flavor = "outlook.office365.com";
-        passwordCommand = "${pass}/bin/pass Email/${ksumail}";
+        passwordCommand = "${lib.getExe pass} email/${ksumail}";
         mbsync = {
           enable = true;
           create = "both";
@@ -51,7 +51,7 @@ in {
   services = {
     mbsync = {
       enable = true;
-      postExec = "${pkgs.mu}/bin/mu index -m ${maildir}";
+      postExec = "${lib.getExe pkgs.mu} index -m ${maildir}";
     };
   };
 }
