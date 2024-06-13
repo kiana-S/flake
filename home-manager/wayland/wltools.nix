@@ -104,7 +104,7 @@
         background-color=#1e0909d0
         border-color=#ce7284
         progress-color=source #bc5469
-        border-size=3
+        border-size=2
         default-timeout=0
         ignore-timeout=1
 
@@ -126,10 +126,15 @@
         border-size=1
         default-timeout=2000
 
-        [category=multimedia app-name=pamixer]
+        [category=multimedia app-name=pamixer body=false]
         background-color=#111111c0
         border-color=#787c99
         progress-color=source #474f6f
+
+        [category=multimedia app-name=pamixer body=true]
+        background-color=#111111c0
+        border-color=#ce7284
+        progress-color=source #bc5469
 
         [category=multimedia app-name=brightnessctl]
         background-color=#111111c0

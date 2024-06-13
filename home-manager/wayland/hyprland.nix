@@ -16,7 +16,14 @@ in {
 
     plugins = with pkgs.hyprlandPlugins; [ hy3 ];
 
-    settings = {
+    settings = let
+      # Volume using pamixer
+      audio-disp = "${scripts}/multimedia Volume $(pamixer --get-mute) pamixer $(pamixer --get-volume)";
+      audio      = cmd: "pamixer ${cmd} && ${audio-disp}";
+      # Brightness using brightnessctl
+      brightness-disp = ''${scripts}/multimedia Brightness "" brightnessctl $(brightnessctl -e -m | cut -d, -f4 | tr -d "%")'';
+      brightness      = x: "brightnessctl -e set ${x} && ${brightness-disp}";
+    in {
       "$mod" = modifier;
       "$terminal" = terminal;
       "$menu" = "rofi -show drun";
@@ -152,7 +159,7 @@ in {
 
       bindl = [
         # XF86 key bindings
-        ", XF86AudioMute, exec, pamixer --toggle-mute"
+        ", XF86AudioMute, exec, ${audio "--toggle-mute"}"
         ", XF86AudioMicMute, exec, pactl set-source-mute @DEFAULT_SOURCE@ toggle"
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioNext, exec, playerctl next"
@@ -163,14 +170,7 @@ in {
         "Shift, Print, exec, ${scripts}/screenshot-slurp"
       ];
 
-      bindle = let
-        # Volume using pamixer
-        audio-disp = "${scripts}/multimedia Volume pamixer $(pamixer --get-volume)";
-        audio      = cmd: "pamixer ${cmd} && ${audio-disp}";
-        # Brightness using brightnessctl
-        brightness-disp = ''${scripts}/multimedia Brightness brightnessctl $(brightnessctl -e -m | cut -d, -f4 | tr -d "%")'';
-        brightness      = x: "brightnessctl -e set ${x} && ${brightness-disp}";
-      in [
+      bindle = [
         # XF86 key bindings
         ", XF86AudioRaiseVolume, exec, ${audio "-i 2"}"
         ", XF86AudioLowerVolume, exec, ${audio "-d 2"}"
