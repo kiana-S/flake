@@ -1,6 +1,19 @@
 { config, pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs;
+    let aspell' = aspellWithDicts.override {
+          aspell = aspell.overrideAttrs (super: {
+            postInstall = super.postInstall + ''
+              mkdir -p $out/etc
+              cat > $out/etc/aspell.conf << EOF
+              lang en_US
+              add-extra-dicts en-computers.rws
+              add-extra-dicts en_US-science.rws
+              EOF
+            '';
+          });
+        } (ps: with ps; [ en en-computers en-science ]);
+    in [
     gcc
     ffmpeg
     openssl
@@ -21,8 +34,9 @@
     gnuplot
     graphviz
     texlive.combined.scheme-full
-    (aspellWithDicts (ps: with ps; [ en en-computers en-science ]))
+    aspell'
   ];
+
 
   programs.hyprland.enable = true;
   security.pam.services.hyprlock = {};
